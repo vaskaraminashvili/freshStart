@@ -10,7 +10,7 @@ export default defineConfig({
         inertia(),
         vue(3),
         laravel({
-            postcss: [tailwindcss(), autoprefixer()],
+            // postcss: [tailwindcss(), autoprefixer()],
         }),
     ],
 });

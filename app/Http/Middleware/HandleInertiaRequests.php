@@ -40,4 +40,13 @@ class HandleInertiaRequests extends Middleware
 
         ]);
     }
+
+    public function rootView(Request $request): string
+    {
+        if (\Str::startsWith($request->route()->getPrefix(), 'admin')) { // if route start with admin load admin app file
+            return 'admin';
+        }
+
+        return 'app';
+    }
 }
