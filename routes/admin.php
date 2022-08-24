@@ -25,5 +25,7 @@ Route::get('/', function () {
 
 
 Route::get('/about', function () {
-    return 'about admin';
+    return Inertia::render('@.about', [
+        'test' => 'test me '
+    ]);
 })->name('about');

@@ -3,7 +3,7 @@ import { createApp, h } from "vue";
 import { createInertiaApp } from "@inertiajs/inertia-vue3";
 import { resolvePageComponent } from "vite-plugin-laravel/inertia";
 import { InertiaProgress } from "@inertiajs/progress";
-import Layout from "@/views/layouts/main-layout.vue";
+import AdminLayout from "@/views/layouts/admin-layout.vue";
 import WebLayout from "@/views/layouts/default.vue";
 // createInertiaApp({
 //     resolve: (name) =>
@@ -28,7 +28,7 @@ createInertiaApp({
                 import.meta.glob("../views/pages/admin/**/*.vue")
             );
             page.then((module) => {
-                module.layout ??= Layout;
+                module.layout ??= AdminLayout;
             });
         } else {
             // load this direcotry for websiste
