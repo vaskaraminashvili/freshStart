@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\Admin\PluginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,9 @@ Route::get('/about', function () {
         'test' => 'test me '
     ]);
 })->name('about');
+
+Route::prefix('plugins')->group(function () {
+    Route::get('plugins', [PluginController::class, 'plugins']);
+    Route::get('index', [PluginController::class, 'index']);
+    Route::get('edit', [PluginController::class, 'edit']);
+});

@@ -1,6 +1,6 @@
 import route from "ziggy-js";
 import { createApp, h } from "vue";
-import { createInertiaApp } from "@inertiajs/inertia-vue3";
+import { createInertiaApp, Link, Head } from "@inertiajs/inertia-vue3";
 import { resolvePageComponent } from "vite-plugin-laravel/inertia";
 import { InertiaProgress } from "@inertiajs/progress";
 import AdminLayout from "@/views/layouts/admin-layout.vue";
@@ -45,6 +45,8 @@ createInertiaApp({
     },
     setup({ el, app, props, plugin }) {
         const App = createApp({ render: () => h(app, props) })
+            .component("Head", Head)
+            .component("Link", Link)
             .use(plugin)
             .mixin({ methods: { route } });
         App.mount(el);
