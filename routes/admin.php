@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\Admin\PluginController;
+use App\Http\Controllers\Admin\DummyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,8 +31,8 @@ Route::get('/about', function () {
     ]);
 })->name('about');
 
-Route::prefix('plugins')->group(function () {
-    Route::get('plugins', [PluginController::class, 'plugins']);
-    Route::get('index', [PluginController::class, 'index']);
-    Route::get('edit', [PluginController::class, 'edit']);
+Route::prefix('dummies')->name('dummies.')->group(function () {
+    Route::get('index', [DummyController::class, 'index'])->name('index');
+    Route::get('plugins', [DummyController::class, 'plugins'])->name('plugins');
+    Route::get('edit', [DummyController::class, 'edit'])->name('edit');
 });

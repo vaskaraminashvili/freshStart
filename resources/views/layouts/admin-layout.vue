@@ -15,7 +15,7 @@ const props = defineProps({
     <main class="main" id="top">
         <div class="container-fluid" data-layout="container">
 
-            <nav class="navbar navbar-light navbar-vertical navbar-expand-xl">
+            <nav class="navbar navbar-light navbar-vertical navbar-expand-xl navbar-vibrant">
 
                 <div class="d-flex align-items-center">
                     <div class="toggle-icon-wrapper">
@@ -118,18 +118,19 @@ const props = defineProps({
                                 </a>
 
                                 <!-- parent pages-->
-                                <a class="nav-link dropdown-indicator" href="#social" role="button"
-                                    data-bs-toggle="collapse" aria-expanded="false" aria-controls="social">
+                                <a class="nav-link dropdown-indicator" href="#dummy" role="button"
+                                    data-bs-toggle="collapse" aria-expanded="false" aria-controls="dummy">
                                     <div class="d-flex align-items-center">
                                         <span class="nav-link-icon">
                                             <span class="fas fa-share-alt"></span>
                                         </span>
-                                        <span class="nav-link-text ps-1">{{ menu[0].title }}</span>
+                                        <span class="nav-link-text ps-1">Dummies</span>
                                     </div>
                                 </a>
-                                <ul class="nav collapse false" id="social">
+                                <ul class="nav collapse false" id="dummy">
                                     <li class="nav-item" v-for="item in menu" :key="item.id">
-                                        <Link :href='item.slug' class="nav-link" aria-expanded="false">
+                                        <Link :href="route('admin.dummies.' + item.action)" class="nav-link"
+                                            aria-expanded="false">
                                         <div class="d-flex align-items-center">
                                             <span class="nav-link-text ps-1">
                                                 {{ item.title }}

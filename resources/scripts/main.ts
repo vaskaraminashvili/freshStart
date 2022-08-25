@@ -5,6 +5,7 @@ import { resolvePageComponent } from "vite-plugin-laravel/inertia";
 import { InertiaProgress } from "@inertiajs/progress";
 import AdminLayout from "@/views/layouts/admin-layout.vue";
 import WebLayout from "@/views/layouts/default.vue";
+import Card from "@/views/components/admin/card.vue";
 // createInertiaApp({
 //     resolve: (name) =>
 //         resolvePageComponent(name, import.meta.glob("../views/pages/**/*.vue")),
@@ -47,6 +48,7 @@ createInertiaApp({
         const App = createApp({ render: () => h(app, props) })
             .component("Head", Head)
             .component("Link", Link)
+            .component("Card", Card)
             .use(plugin)
             .mixin({ methods: { route } });
         App.mount(el);
