@@ -16,7 +16,7 @@ class DummyController extends Controller
      */
     public function index()
     {
-        $dummies = Dummy::orderBy('id')->paginate(6);
+        $dummies = Dummy::orderBy('id')->paginate(20);
         return Inertia::render('@.dummy.index', [
             'dummies' => $dummies
         ]);

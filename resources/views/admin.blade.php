@@ -38,9 +38,9 @@
     <link href="{{ asset('../myCms/vendors/overlayscrollbars/OverlayScrollbars.min.css') }}" rel="stylesheet">
     <link href="{{ asset('../myCms/assets/css/theme.min.css') }}" rel="stylesheet" id="style-default">
     <link href="{{ asset('../myCms/assets/css/user.min.css') }}" rel="stylesheet" id="user-style-default">
-
+    <!--    Stylesheets-->
     @routes
-    @vite
+    @vite()
 </head>
 
 <body>

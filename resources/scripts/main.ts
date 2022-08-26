@@ -6,6 +6,9 @@ import { InertiaProgress } from "@inertiajs/progress";
 import AdminLayout from "@/views/layouts/admin-layout.vue";
 import WebLayout from "@/views/layouts/default.vue";
 import Card from "@/views/components/admin/card.vue";
+
+import classes from "@/sass/app.scss";
+import "@/sass/app.scss";
 // createInertiaApp({
 //     resolve: (name) =>
 //         resolvePageComponent(name, import.meta.glob("../views/pages/**/*.vue")),
