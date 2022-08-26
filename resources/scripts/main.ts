@@ -71,4 +71,6 @@ InertiaProgress.init();
 //     },
 // });
 
-InertiaProgress.init();
+InertiaProgress.init({
+    delay: 250,
+});

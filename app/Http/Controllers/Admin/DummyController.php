@@ -16,9 +16,28 @@ class DummyController extends Controller
      */
     public function index()
     {
-        $dummies = Dummy::orderBy('id')->paginate(20);
+        $query = Dummy::query();
+        // think to move this code inside trait or something esle
+        request()->validate([
+            'direction' => ['in:asc,desc'],
+            'field' => ['in:name,email'], // this may come in future from the model
+            ]);
+
+        if (request('search')) {
+            $query->where('name', 'LIKE', '%'.request('search').'%');
+        }
+
+        if (request()->has(['field' , 'direction'])) {
+            $query->orderBy(request('field'), request('direction'));
+        }
+
+        $dummies = $query->orderBy('id')->paginate(20);
+
+        // think to move this code inside trait or something esle
+
         return Inertia::render('@.dummy.index', [
-            'dummies' => $dummies
+            'dummies' => $dummies,
+            'filters' => request()->all(['search' , 'field' , 'direction'])
         ]);
     }
 
