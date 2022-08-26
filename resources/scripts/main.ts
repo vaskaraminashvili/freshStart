@@ -58,8 +58,6 @@ createInertiaApp({
     },
 });
 
-InertiaProgress.init();
-
 // createInertiaApp({
 //     resolve: (name) =>
 //         resolvePageComponent(name, import.meta.glob("../views/pages/**/*.vue")),
@@ -71,6 +69,4 @@ InertiaProgress.init();
 //     },
 // });
 
-InertiaProgress.init({
-    delay: 250,
-});
+InertiaProgress.init();

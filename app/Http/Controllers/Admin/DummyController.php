@@ -31,7 +31,14 @@ class DummyController extends Controller
             $query->orderBy(request('field'), request('direction'));
         }
 
-        $dummies = $query->orderBy('id')->paginate(20);
+        $dummies = $query->orderBy('id')->paginate(20)->withQueryString()->through(fn($dummy) => [
+            'id' => $dummy->id,
+            'name' => $dummy->name,
+            'email' => $dummy->email,
+            'address' => $dummy->address,
+            'phone' => $dummy->phone,
+            'amount' => $dummy->amount,
+        ]);
 
         // think to move this code inside trait or something esle
 
@@ -79,9 +86,21 @@ class DummyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Dummy $dummy)
     {
-        //
+
+        $dummy = [
+            'id' => $dummy->id,
+            'name' => $dummy->name,
+            'email' => $dummy->email,
+            'address' => $dummy->address,
+            'phone' => $dummy->phone,
+            'amount' => $dummy->amount,
+        ];
+
+        return Inertia::render('@.dummy.edit', [
+            'dummy' => $dummy,
+        ]);
     }
 
     /**

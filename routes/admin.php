@@ -31,8 +31,14 @@ Route::get('/about', function () {
     ]);
 })->name('about');
 
-Route::prefix('dummies')->name('dummies.')->group(function () {
-    Route::get('index', [DummyController::class, 'index'])->name('index');
-    Route::get('plugins', [DummyController::class, 'plugins'])->name('plugins');
-    Route::get('edit', [DummyController::class, 'edit'])->name('edit');
-});
+
+
+Route::resource('dummies', DummyController::class);
+
+
+// Route::prefix('dummies')->name('dummies.')->group(function () {
+//     Route::resource('index', [DummyController::class, 'index'])->name('index');
+//     Route::get('index', [DummyController::class, 'index'])->name('index');
+//     Route::get('plugins', [DummyController::class, 'plugins'])->name('plugins');
+//     Route::get('edit', [DummyController::class, 'edit'])->name('edit');
+// });
