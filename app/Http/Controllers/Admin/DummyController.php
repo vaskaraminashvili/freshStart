@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreDummyRequest;
 use App\Models\Dummy;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -110,9 +111,22 @@ class DummyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Dummy $dummy , Request $request)
     {
-        //
+//        dd($request->all());
+//
+//        $test = [
+//            'name' => "$request->name",
+//            'email' => 'admi@asdas.com',
+//            'address' => 'address',
+//            'phone' => 123123,
+//            'amount' => 40.0,
+//        ];
+
+//        $dummy->update($test);
+        $dummy->update($request->all());
+
+        return redirect()->back();
     }
 
     /**
