@@ -1,13 +1,14 @@
 import route from "ziggy-js";
 import { createApp, h } from "vue";
-import { createInertiaApp, Link, Head } from "@inertiajs/inertia-vue3";
+import { createInertiaApp, Link, Head, App } from "@inertiajs/inertia-vue3";
 import { resolvePageComponent } from "vite-plugin-laravel/inertia";
 import { InertiaProgress } from "@inertiajs/progress";
 import AdminLayout from "@/views/layouts/admin-layout.vue";
 import WebLayout from "@/views/layouts/default.vue";
 import Card from "@/views/components/admin/card.vue";
+import Toast, { useToast } from "vue-toastification";
+import "vue-toastification/dist/index.css";
 
-import classes from "@/sass/app.scss";
 import "@/sass/app.scss";
 // createInertiaApp({
 //     resolve: (name) =>
@@ -53,11 +54,13 @@ createInertiaApp({
             .component("Link", Link)
             .component("Card", Card)
             .use(plugin)
+            .use(Toast)
             .mixin({ methods: { route } });
+        // make toast available globaly (usage this.toast.success("I'm an info toast!");)
+        App.config.globalProperties.toast = useToast();
         App.mount(el);
     },
 });
-
 // createInertiaApp({
 //     resolve: (name) =>
 //         resolvePageComponent(name, import.meta.glob("../views/pages/**/*.vue")),

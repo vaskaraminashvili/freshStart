@@ -82,6 +82,7 @@
           </div>
         </div>
       </form>
+      <button @click="myMethod">TTOS</button>
     </template>
   </Card>
 </template>
@@ -97,7 +98,16 @@ export default {
   },
   setup(props) {
     const form = useForm(props.dummy);
+
+    // Make it available inside methods
     return { form };
+  },
+  methods: {
+    myMethod() {
+      console.log("asdsa");
+      console.log(this.toast);
+      this.toast.success("I'm an info toast!");
+    },
   },
 };
 </script>
