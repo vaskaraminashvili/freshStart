@@ -109,7 +109,7 @@
           </tbody>
         </table>
       </div>
-      <Pagination :links="dummies.links"></Pagination>
+      <Pagination :links="dummies.meta.links"></Pagination>
     </template>
   </Card>
 </template>

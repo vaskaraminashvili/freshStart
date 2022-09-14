@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreDummyRequest;
+use Inertia\Inertia;
 use App\Models\Dummy;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\DummyResource;
+use App\Http\Requests\StoreDummyRequest;
 
 class DummyController extends Controller
 {
@@ -32,19 +33,11 @@ class DummyController extends Controller
             $query->orderBy(request('field'), request('direction'));
         }
 
-        $dummies = $query->orderBy('id')->paginate(20)->withQueryString()->through(fn($dummy) => [
-            'id' => $dummy->id,
-            'name' => $dummy->name,
-            'email' => $dummy->email,
-            'address' => $dummy->address,
-            'phone' => $dummy->phone,
-            'amount' => $dummy->amount,
-        ]);
-
+        $dummies = $query->orderBy('id')->paginate(20)->withQueryString();
         // think to move this code inside trait or something esle
-
+        $tt = DummyResource::collection($dummies);
         return Inertia::render('@.dummy.index', [
-            'dummies' => $dummies,
+            'dummies' => $tt,
             'filters' => request()->all(['search' , 'field' , 'direction'])
         ]);
     }
@@ -89,7 +82,6 @@ class DummyController extends Controller
      */
     public function edit(Dummy $dummy)
     {
-
         $dummy = [
             'id' => $dummy->id,
             'name' => $dummy->name,
@@ -111,7 +103,7 @@ class DummyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Dummy $dummy , Request $request)
+    public function update(Dummy $dummy, Request $request)
     {
 //        dd($request->all());
 //
