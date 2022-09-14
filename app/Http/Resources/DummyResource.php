@@ -21,6 +21,7 @@ class DummyResource extends JsonResource
             'address' => $this->address,
             'phone' => $this->phone,
             'amount' => $this->amount,
+            'active' => (bool)!$this->deleted_at,
         ];
     }
 }

@@ -65,12 +65,17 @@
               <td class="text-nowrap">{{ dummy.address }}</td>
               <td>
                 <span
-                  class="badge badge rounded-pill d-block p-2 badge-soft-success"
-                  >Completed<span
+                  class="badge badge rounded-pill d-block p-2"
+                  :class="
+                    dummy.active ? 'badge-soft-success' : 'badge-soft-warning'
+                  "
+                >
+                  {{ dummy.active ? "Active" : "Not Active" }}
+                  <span
                     class="ms-1 fas fa-check"
                     data-fa-transform="shrink-2"
-                  ></span
-                ></span>
+                  ></span>
+                </span>
               </td>
               <td class="text-nowrap">${{ dummy.amount }}</td>
               <td class="text-end">
@@ -109,6 +114,7 @@
           </tbody>
         </table>
       </div>
+      <!-- when using recource and pagination links are located dummies.meta.links inside meta -->
       <Pagination :links="dummies.meta.links"></Pagination>
     </template>
   </Card>

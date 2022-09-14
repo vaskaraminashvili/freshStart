@@ -18,7 +18,7 @@ class DummyController extends Controller
      */
     public function index()
     {
-        $query = Dummy::query();
+        $query = Dummy::query()->withTrashed();
         // think to move this code inside trait or something esle
         request()->validate([
             'direction' => ['in:asc,desc'],
