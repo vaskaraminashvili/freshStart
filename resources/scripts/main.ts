@@ -8,7 +8,7 @@ import WebLayout from "@/views/layouts/default.vue";
 import Card from "@/views/components/admin/card.vue";
 import Toast, { useToast } from "vue-toastification";
 import "vue-toastification/dist/index.css";
-
+import { toastOptions } from "./customOptions";
 import "@/sass/app.scss";
 // createInertiaApp({
 //     resolve: (name) =>
@@ -24,6 +24,7 @@ import "@/sass/app.scss";
 createInertiaApp({
     resolve: async (name) => {
         let page;
+
         if (name.startsWith("@.")) {
             // load this direcotry for admin
             name = name.replace("@.", "");
@@ -54,7 +55,7 @@ createInertiaApp({
             .component("Link", Link)
             .component("Card", Card)
             .use(plugin)
-            .use(Toast)
+            .use(Toast, toastOptions)
             .mixin({ methods: { route } });
         // make toast available globaly (usage this.toast.success("I'm an info toast!");)
         App.config.globalProperties.toast = useToast();

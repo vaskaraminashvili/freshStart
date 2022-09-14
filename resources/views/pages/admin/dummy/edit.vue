@@ -4,7 +4,7 @@
       <h5 class="mb-0" data-anchor="data-anchor">Edit Dummy</h5>
     </template>
     <template v-slot:default>
-      <form @submit.prevent="form.put(route('admin.dummies.update', form.id))">
+      <form @submit.prevent="submit">
         <div class="row">
           <!-- <div class="mb-3 col-xl-4">
             <label class="form-label" for="name">Name</label>
@@ -82,7 +82,6 @@
           </div>
         </div>
       </form>
-      <button @click="myMethod">TTOS</button>
     </template>
   </Card>
 </template>
@@ -90,9 +89,9 @@
 <script>
 import { useForm } from "@inertiajs/inertia-vue3";
 import BaseInput from "@/views/components/admin/form/base-input.vue";
-
+import CustomToast from "@/views/components/admin/ui/customToast.vue";
 export default {
-  components: { BaseInput },
+  components: { BaseInput, CustomToast },
   props: {
     dummy: Object,
   },
@@ -103,10 +102,12 @@ export default {
     return { form };
   },
   methods: {
-    myMethod() {
-      console.log("asdsa");
-      console.log(this.toast);
-      this.toast.success("I'm an info toast!");
+    submit() {
+      this.form.put(route("admin.dummies.update", this.form.id), {
+        onSuccess: () => {
+          this.toast.success("Dummy was updated");
+        },
+      });
     },
   },
 };
