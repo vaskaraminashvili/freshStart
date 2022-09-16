@@ -18,20 +18,19 @@ class DummyController extends Controller
      */
     public function index()
     {
-        $query = Dummy::query()->withTrashed();
+        $query = Dummy::query()
+            ->customSort()
+            ->customSearch()
+            ->withTrashed();
         // think to move this code inside trait or something esle
         request()->validate([
             'direction' => ['in:asc,desc'],
             'field' => ['in:name,email'], // this may come in future from the model
             ]);
 
-        if (request('search')) {
-            $query->where('name', 'LIKE', '%'.request('search').'%');
-        }
 
-        if (request()->has(['field' , 'direction'])) {
-            $query->orderBy(request('field'), request('direction'));
-        }
+
+
 
         $dummies = $query->orderBy('id')->paginate(20)->withQueryString();
         // think to move this code inside trait or something esle
