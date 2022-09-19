@@ -9,7 +9,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Dummy extends Model
 {
-    use SoftDeletes,SortableTrait, SearchableTrait;
+    use SoftDeletes, SortableTrait, SearchableTrait;
 
-    protected $fillable = ['name' ,'address' ,'email' , 'amount' , 'phone' , 'status'];
+//    maybe find better way sometimes
+    public static $customizable = [
+        'model' => 'dummy',
+        'index' => [
+            'fields' => [
+                // base on this field will displayed in table head and body
+                //this shoud be same as field names in DB
+                'name', 'address', 'email', 'amount', 'phone', 'status'
+            ],
+            'sortable' => [
+                'name'
+            ],
+        ]
+    ];
+
+    protected $fillable = ['name', 'address', 'email', 'amount', 'phone', 'status'];
 }

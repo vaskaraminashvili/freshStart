@@ -10,9 +10,17 @@ use Illuminate\Http\Request;
  */
 trait SortableTrait
 {
+    public function getAllowedSort($field = 'sortable'){
+        $method_name =request()->route()->getActionMethod();
+        return collect(self::$customizable[$method_name][$field]);
+    }
 
     public function scopeCustomSort($query){
-        if (request()->has(['field' , 'direction'])) {
+        $sort = $this->getAllowedSort()->contains(function ($field){
+            return $field == request('field') ? true :false;
+        });
+
+        if (request()->has(['field' , 'direction']) && $sort) {
             $query->orderBy(request('field'), request('direction'));
         }
     }

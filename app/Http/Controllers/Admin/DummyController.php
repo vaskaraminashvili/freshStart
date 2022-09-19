@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 use App\Models\Dummy;
 use Illuminate\Http\Request;
@@ -11,6 +12,22 @@ use App\Http\Requests\StoreDummyRequest;
 
 class DummyController extends Controller
 {
+    public $data=[];
+
+    public function __construct()
+    {
+
+        $method_name =request()->route()->getActionMethod();
+        $customizable = array_key_exists( $method_name,Dummy::$customizable) ? Dummy::$customizable[$method_name] : [];
+        $this->data = [
+            'currentModel' => [
+                'singular' => Dummy::$customizable['model'],
+                'plural' => Str::plural(Dummy::$customizable['model']),
+            ],
+            'customizable' => $customizable,
+        ];
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -33,12 +50,11 @@ class DummyController extends Controller
 
 
         $dummies = $query->orderBy('id')->paginate(20)->withQueryString();
-        // think to move this code inside trait or something esle
-        $tt = DummyResource::collection($dummies);
-        return Inertia::render('@.dummy.index', [
-            'dummies' => $tt,
-            'filters' => request()->all(['search' , 'field' , 'direction'])
-        ]);
+
+        $this->data['items'] = DummyResource::collection($dummies);
+        $this->data['filters'] = request()->all(['search' , 'field' , 'direction']);
+
+        return Inertia::render('@.dummy.index', $this->data);
     }
 
     /**

@@ -11,6 +11,7 @@ trait SearchableTrait
 {
 
     public function scopeCustomSearch($query){
+
         if (request()->has('search')) {
             $query->where('name', 'LIKE', '%'.request('search').'%');
         }
