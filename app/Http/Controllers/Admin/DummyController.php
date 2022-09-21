@@ -19,10 +19,11 @@ class DummyController extends Controller
 
         $method_name =request()->route()->getActionMethod();
         $customizable = array_key_exists( $method_name,Dummy::$customizable) ? Dummy::$customizable[$method_name] : [];
+//        dd($customizable);
         $this->data = [
             'currentModel' => [
-                'singular' => Dummy::$customizable['model'],
-                'plural' => Str::plural(Dummy::$customizable['model']),
+                'singular' => Dummy::$customizable['index']['model'],
+                'plural' => Str::plural(Dummy::$customizable['index']['model']),
             ],
             'customizable' => $customizable,
         ];

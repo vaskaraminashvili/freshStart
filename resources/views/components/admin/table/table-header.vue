@@ -1,19 +1,18 @@
 <template>
   <thead>
   <tr>
-    <template v-for="(field,index) in $attrs.customizable.fields" :key="index">
-      <th v-if="inArray(field,$attrs.customizable.sortable)"
+    <template v-for="(field , name) in customizable.fields" :key="name">
+      <th v-if="field.sortable"
           scope="col"
           class="sort"
-          :data-sort="field"
-          :class="[params.field == field ? params.direction : '']"
-          @click="sort(field)"
-      >{{ field }}
+          :data-sort="name"
+          :class="[params.name == name ? params.direction : '']"
+          @click="sort(name)"
+      >{{ name }}
       </th>
-      <th v-else>{{ field }}</th>
+      <th v-else>{{ name }}</th>
     </template>
     <th class="text-center" scope="col">Actions</th>
-
   </tr>
   </thead>
 </template>
@@ -24,6 +23,10 @@ import {pickBy, debounce, throttle} from "lodash";
 export default {
   props: {
     filters: Object,
+    customizable: {
+      required: true,
+      type: Object,
+    }
   },
   data() {
     return {

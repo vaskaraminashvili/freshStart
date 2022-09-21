@@ -13,16 +13,44 @@ class Dummy extends Model
 
 //    maybe find better way sometimes
     public static $customizable = [
-        'model' => 'dummy',
+        // put everything acroding to methods
         'index' => [
-            'fields' => [
-                // base on this field will displayed in table head and body
-                //this shoud be same as field names in DB
-                'name', 'address', 'email', 'amount', 'phone', 'status'
+//            this is the model used , after this will be transformed to upper and plural
+            'model' => 'dummy',
+            // here will be described fields one by one field will have several attribute to described it
+            'fields' =>[
+                'name' => [
+                    'sortable' => true,
+                    'searchable' => true,
+//                    'type' => 'text' , // text can be default!!  there could be several and after added new types || text , number , money , status, switch
+                ],
+                'address' => [
+                    'sortable' => true,
+                ],
+                'email' => [
+                    'sortable' => true,
+                ],
+                'amount' => [
+                    'sortable' => true,
+                    'type' => 'money'
+                ],
+                'phone' => [
+                ],
+                'status' => [
+//                    'type' => 'status'
+                ],
             ],
-            'sortable' => [
-                'name'
-            ],
+
+
+
+//            'fields' => [
+//                // base on this field will displayed in table head and body
+//                //this shoud be same as field names in DB
+//                'name', 'address', 'email', 'amount', 'phone', 'status'
+//            ],
+//            'sortable' => [
+//                'name'
+//            ],
         ]
     ];
 
