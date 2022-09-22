@@ -19,12 +19,11 @@ class DummyController extends Controller
 
         $method_name =request()->route()->getActionMethod();
         $customizable = array_key_exists( $method_name,Dummy::$customizable) ? Dummy::$customizable[$method_name] : [];
-//        dd($customizable);
+        $customizable['currentModel'] = [
+            'singular' => Dummy::$customizable['index']['model'],
+            'plural' => Str::plural(Dummy::$customizable['index']['model']),
+        ];
         $this->data = [
-            'currentModel' => [
-                'singular' => Dummy::$customizable['index']['model'],
-                'plural' => Str::plural(Dummy::$customizable['index']['model']),
-            ],
             'customizable' => $customizable,
         ];
     }
@@ -36,10 +35,7 @@ class DummyController extends Controller
      */
     public function index()
     {
-        $query = Dummy::query()
-            ->customSort()
-            ->customSearch()
-            ->withTrashed();
+
         // think to move this code inside trait or something esle
         request()->validate([
             'direction' => ['in:asc,desc'],
@@ -49,10 +45,15 @@ class DummyController extends Controller
 
 
 
-
-        $dummies = $query->orderBy('id')->paginate(20)->withQueryString();
-
+        $dummies = Dummy::query()
+            ->with(['status'])
+            ->customSort()
+            ->customSearch()
+            ->withTrashed()
+            ->orderBy('id')->paginate(20)->withQueryString();
+//        dd($dummies);
         $this->data['items'] = DummyResource::collection($dummies);
+//        dd($this->data);
         $this->data['filters'] = request()->all(['search' , 'field' , 'direction']);
 
         return Inertia::render('@.dummy.index', $this->data);

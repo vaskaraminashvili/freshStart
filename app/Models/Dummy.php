@@ -32,12 +32,12 @@ class Dummy extends Model
                 ],
                 'amount' => [
                     'sortable' => true,
-                    'type' => 'money'
+                    'type' => 'money' // type can be array and pass some things like PREFIX SUFFIX or other things  NEEDS TO BE CHECKED IF ARRAY
                 ],
                 'phone' => [
                 ],
-                'status' => [
-//                    'type' => 'status'
+                'active' => [
+                    'type' => 'status'
                 ],
             ],
 
@@ -55,4 +55,8 @@ class Dummy extends Model
     ];
 
     protected $fillable = ['name', 'address', 'email', 'amount', 'phone', 'status'];
+
+    public function status(){
+        return $this->belongsTo(Status::class);
+    }
 }
