@@ -97,8 +97,9 @@ class DummyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Dummy $dummy)
+    public function edit($id)
     {
+        $dummy = Dummy::withTrashed()->findOrFail($id);
         $dummy = [
             'id' => $dummy->id,
             'name' => $dummy->name,

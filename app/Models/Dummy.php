@@ -35,6 +35,11 @@ class Dummy extends Model
                     'type' => 'money' // type can be array and pass some things like PREFIX SUFFIX or other things  NEEDS TO BE CHECKED IF ARRAY
                 ],
                 'phone' => [
+                    'type' => 'phone',
+                    'typeProps' => [
+                        'suffix' => '##',
+                        'prefix' => '##asd'
+                    ]
                 ],
                 'active' => [
                     'type' => 'status'

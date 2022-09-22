@@ -36,10 +36,11 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        $menu = \DB::table('admin_pages')->get();
+//        $menu = \DB::table('admin_pages')->get();
 
         return array_merge(parent::share($request), [
-            'menu' => $menu
+//            'menu' => $menu
+            'menu' => []
         ]);
     }
 
