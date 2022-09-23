@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Str;
 
 class DummyResource extends JsonResource
 {
@@ -18,7 +19,7 @@ class DummyResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'address' => $this->address,
+            'address' => Str::limit($this->address, 20, ' (...)'),
             'phone' => $this->phone,
             'amount' => $this->amount,
             'active' => (bool)!$this->deleted_at,

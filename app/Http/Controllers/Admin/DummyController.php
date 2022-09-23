@@ -36,15 +36,6 @@ class DummyController extends Controller
     public function index()
     {
 
-        // think to move this code inside trait or something esle
-        request()->validate([
-            'direction' => ['in:asc,desc'],
-            'field' => ['in:name,email'], // this may come in future from the model
-            ]);
-
-
-
-
         $dummies = Dummy::query()
             ->with(['status'])
             ->customSort()

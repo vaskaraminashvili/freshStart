@@ -7,16 +7,17 @@
   >
     <!--    print customizable fileds -->
     <template v-for="(field,name) in customizable.fields">
-      <template v-if="field['type'] !== undefined">
-        <component
-          :is="determineType(field)"
-          :value="item[name]"
-          :typeProps="field['typeProps'] !== undefined ? field['typeProps'] : ''"
-        ></component>
-      </template>
-      <td class="text-nowrap" v-else>
-        <div class="ms-2">{{ item[name] }}</div>
-      </td>
+      <component v-if="field['type'] !== undefined"
+                 :is="determineType(field)"
+                 :value="item[name]"
+                 :typeProps="field['typeProps'] !== undefined ? field['typeProps'] : ''"
+      ></component>
+      <component v-else
+                 :is="dynamicComp('default')"
+                 :value="item[name]"
+                 :typeProps="field['typeProps'] !== undefined ? field['typeProps'] : ''"
+      ></component>
+
     </template>
     <!--    print customizable fileds -->
     <ActionsField :item="item" :customizable="customizable"></ActionsField>
@@ -28,6 +29,7 @@
 <script>
 import {defineAsyncComponent} from "vue";
 import ActionsField from "@/views/components/admin/table/fields/actions-field.vue";
+
 export default {
   components: {
     ActionsField
@@ -41,7 +43,7 @@ export default {
   },
   methods: {
     dynamicComp(fieldName) {
-        return defineAsyncComponent(() => import(`@/views/components/admin/table/fields/${fieldName}-field.vue`))
+      return defineAsyncComponent(() => import(`@/views/components/admin/table/fields/${fieldName}-field.vue`))
     },
     determineType(field) {
       if (field['typeProps'] !== undefined) {

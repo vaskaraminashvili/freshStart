@@ -6,7 +6,7 @@
           scope="col"
           class="sort"
           :data-sort="name"
-          :class="[params.name == name ? params.direction : '']"
+          :class="[params.field == name ? params.direction : '']"
           @click="sort(name)"
       >{{ name }}
       </th>
@@ -58,7 +58,7 @@ export default {
           replace: true,
           preserveState: true,
         });
-      }, 200),
+      }, 500),
       deep: true,
     },
   },
