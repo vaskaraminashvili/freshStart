@@ -22,7 +22,7 @@ const props = defineProps({
               title="Toggle Navigation"
             >
               <span class="navbar-toggle-icon"
-                ><span class="toggle-line"></span
+              ><span class="toggle-line"></span
               ></span>
             </button>
           </div>
@@ -42,19 +42,19 @@ const props = defineProps({
             <ul class="navbar-nav flex-column mb-3" id="navbarVerticalNav">
               <li class="nav-item">
                 <!-- parent pages--><a
-                  class="nav-link dropdown-indicator"
-                  href="#dashboard"
-                  role="button"
-                  data-bs-toggle="collapse"
-                  aria-expanded="false"
-                  aria-controls="dashboard"
-                >
-                  <div class="d-flex align-items-center">
+                class="nav-link dropdown-indicator"
+                href="#dashboard"
+                role="button"
+                data-bs-toggle="collapse"
+                aria-expanded="false"
+                aria-controls="dashboard"
+              >
+                <div class="d-flex align-items-center">
                     <span class="nav-link-icon"
-                      ><span class="fas fa-chart-pie"></span></span
+                    ><span class="fas fa-chart-pie"></span></span
                     ><span class="nav-link-text ps-1">Dashboard</span>
-                  </div>
-                </a>
+                </div>
+              </a>
                 <ul class="nav collapse false" id="dashboard">
                   <li class="nav-item">
                     <a
@@ -135,33 +135,33 @@ const props = defineProps({
                 <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
                   <div class="col-auto navbar-vertical-label">Modules</div>
                   <div class="col ps-0">
-                    <hr class="mb-0 navbar-vertical-divider" />
+                    <hr class="mb-0 navbar-vertical-divider"/>
                   </div>
                 </div>
                 <!-- parent pages--><a
-                  class="nav-link"
-                  href="../app/calendar.html"
-                  role="button"
-                  aria-expanded="false"
-                >
-                  <div class="d-flex align-items-center">
+                class="nav-link"
+                href="../app/calendar.html"
+                role="button"
+                aria-expanded="false"
+              >
+                <div class="d-flex align-items-center">
                     <span class="nav-link-icon"
-                      ><span class="fas fa-calendar-alt"></span></span
+                    ><span class="fas fa-calendar-alt"></span></span
                     ><span class="nav-link-text ps-1">Calendar</span>
-                  </div>
-                </a>
+                </div>
+              </a>
                 <!-- parent pages--><a
-                  class="nav-link"
-                  href="../app/chat.html"
-                  role="button"
-                  aria-expanded="false"
-                >
-                  <div class="d-flex align-items-center">
+                class="nav-link"
+                href="../app/chat.html"
+                role="button"
+                aria-expanded="false"
+              >
+                <div class="d-flex align-items-center">
                     <span class="nav-link-icon"
-                      ><span class="fas fa-comments"></span></span
+                    ><span class="fas fa-comments"></span></span
                     ><span class="nav-link-text ps-1">Chat</span>
-                  </div>
-                </a>
+                </div>
+              </a>
 
                 <!-- parent pages-->
                 <a
@@ -211,7 +211,7 @@ const props = defineProps({
                     width="80"
                   />
                   <p class="fs--2 mt-2">
-                    Loving what you see? <br />Get your copy of
+                    Loving what you see? <br/>Get your copy of
                     <a href="#!">Falcon</a>
                   </p>
                   <div class="d-grid">
@@ -219,7 +219,7 @@ const props = defineProps({
                       class="btn btn-sm btn-purchase"
                       href="https://themes.getbootstrap.com/product/falcon-admin-dashboard-webapp-template/"
                       target="_blank"
-                      >Purchase</a
+                    >Purchase</a
                     >
                   </div>
                 </div>
@@ -240,7 +240,7 @@ const props = defineProps({
             aria-label="Toggle Navigation"
           >
             <span class="navbar-toggle-icon"
-              ><span class="toggle-line"></span
+            ><span class="toggle-line"></span
             ></span>
           </button>
           <a class="navbar-brand me-1 me-sm-3" href="../index.html">
@@ -319,7 +319,7 @@ const props = defineProps({
                       </div>
                     </a>
 
-                    <hr class="bg-200 dark__bg-900" />
+                    <hr class="bg-200 dark__bg-900"/>
                     <h6
                       class="dropdown-header fw-medium text-uppercase px-card fs--2 pt-0 pb-2"
                     >
@@ -332,7 +332,7 @@ const props = defineProps({
                       <div class="d-flex align-items-center">
                         <span
                           class="badge fw-medium text-decoration-none me-2 badge-soft-warning"
-                          >customers:</span
+                        >customers:</span
                         >
                         <div class="flex-1 fs--1 title">All customers list</div>
                       </div>
@@ -344,7 +344,7 @@ const props = defineProps({
                       <div class="d-flex align-items-center">
                         <span
                           class="badge fw-medium text-decoration-none me-2 badge-soft-success"
-                          >events:</span
+                        >events:</span
                         >
                         <div class="flex-1 fs--1 title">
                           Latest events in current month
@@ -358,7 +358,7 @@ const props = defineProps({
                       <div class="d-flex align-items-center">
                         <span
                           class="badge fw-medium text-decoration-none me-2 badge-soft-info"
-                          >products:</span
+                        >products:</span
                         >
                         <div class="flex-1 fs--1 title">
                           Most popular products
@@ -366,7 +366,7 @@ const props = defineProps({
                       </div>
                     </a>
 
-                    <hr class="bg-200 dark__bg-900" />
+                    <hr class="bg-200 dark__bg-900"/>
                     <h6
                       class="dropdown-header fw-medium text-uppercase px-card fs--2 pt-0 pb-2"
                     >
@@ -386,8 +386,8 @@ const props = defineProps({
                           <p class="fs--2 mb-0 d-flex">
                             <span class="fw-semi-bold">Antony</span
                             ><span class="fw-medium text-600 ms-2"
-                              >27 Sep at 10:30 AM</span
-                            >
+                          >27 Sep at 10:30 AM</span
+                          >
                           </p>
                         </div>
                       </div>
@@ -406,14 +406,14 @@ const props = defineProps({
                           <p class="fs--2 mb-0 d-flex">
                             <span class="fw-semi-bold">John</span
                             ><span class="fw-medium text-600 ms-2"
-                              >30 Sep at 12:30 PM</span
-                            >
+                          >30 Sep at 12:30 PM</span
+                          >
                           </p>
                         </div>
                       </div>
                     </a>
 
-                    <hr class="bg-200 dark__bg-900" />
+                    <hr class="bg-200 dark__bg-900"/>
                     <h6
                       class="dropdown-header fw-medium text-uppercase px-card fs--2 pt-0 pb-2"
                     >
@@ -499,7 +499,7 @@ const props = defineProps({
                   data-bs-toggle="tooltip"
                   data-bs-placement="left"
                   title="Switch to light theme"
-                  ><span class="fas fa-sun fs-0"></span
+                ><span class="fas fa-sun fs-0"></span
                 ></label>
                 <label
                   class="mb-0 theme-control-toggle-label theme-control-toggle-dark"
@@ -507,7 +507,7 @@ const props = defineProps({
                   data-bs-toggle="tooltip"
                   data-bs-placement="left"
                   title="Switch to dark theme"
-                  ><span class="fas fa-moon fs-0"></span
+                ><span class="fas fa-moon fs-0"></span
                 ></label>
               </div>
             </li>
@@ -515,12 +515,12 @@ const props = defineProps({
               <a
                 class="nav-link px-0 notification-indicator notification-indicator-warning notification-indicator-fill fa-icon-wait"
                 href="../app/e-commerce/shopping-cart.html"
-                ><span
-                  class="fas fa-shopping-cart"
-                  data-fa-transform="shrink-7"
-                  style="font-size: 33px"
-                ></span
-                ><span class="notification-indicator-number">1</span></a
+              ><span
+                class="fas fa-shopping-cart"
+                data-fa-transform="shrink-7"
+                style="font-size: 33px"
+              ></span
+              ><span class="notification-indicator-number">1</span></a
               >
             </li>
             <li class="nav-item dropdown">
@@ -532,11 +532,11 @@ const props = defineProps({
                 data-bs-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
-                ><span
-                  class="fas fa-bell"
-                  data-fa-transform="shrink-6"
-                  style="font-size: 33px"
-                ></span
+              ><span
+                class="fas fa-bell"
+                data-fa-transform="shrink-6"
+                style="font-size: 33px"
+              ></span
               ></a>
               <div
                 class="dropdown-menu dropdown-menu-end dropdown-menu-card dropdown-menu-notification"
@@ -550,7 +550,7 @@ const props = defineProps({
                       </div>
                       <div class="col-auto ps-0 ps-sm-3">
                         <a class="card-link fw-normal" href="#"
-                          >Mark all as read</a
+                        >Mark all as read</a
                         >
                       </div>
                     </div>
@@ -578,9 +578,9 @@ const props = defineProps({
                               comment : "Hello world 😍"
                             </p>
                             <span class="notification-time"
-                              ><span class="me-2" role="img" aria-label="Emoji"
-                                >💬</span
-                              >Just now</span
+                            ><span class="me-2" role="img" aria-label="Emoji"
+                            >💬</span
+                            >Just now</span
                             >
                           </div>
                         </a>
@@ -603,10 +603,10 @@ const props = defineProps({
                               <strong>Mia Khalifa's</strong> status
                             </p>
                             <span class="notification-time"
-                              ><span
-                                class="me-2 fab fa-gratipay text-danger"
-                              ></span
-                              >9hr</span
+                            ><span
+                              class="me-2 fab fa-gratipay text-danger"
+                            ></span
+                            >9hr</span
                             >
                           </div>
                         </a>
@@ -629,9 +629,9 @@ const props = defineProps({
                               California. See today's weather.
                             </p>
                             <span class="notification-time"
-                              ><span class="me-2" role="img" aria-label="Emoji"
-                                >🌤️</span
-                              >1d</span
+                            ><span class="me-2" role="img" aria-label="Emoji"
+                            >🌤️</span
+                            >1d</span
                             >
                           </div>
                         </a>
@@ -656,9 +656,9 @@ const props = defineProps({
                               event : "Causal Inference Hilary 2019"
                             </p>
                             <span class="notification-time"
-                              ><span class="me-2" role="img" aria-label="Emoji"
-                                >✌️</span
-                              >1w</span
+                            ><span class="me-2" role="img" aria-label="Emoji"
+                            >✌️</span
+                            >1w</span
                             >
                           </div>
                         </a>
@@ -684,9 +684,9 @@ const props = defineProps({
                               Fund
                             </p>
                             <span class="notification-time"
-                              ><span class="me-2" role="img" aria-label="Emoji"
-                                >🙋‍</span
-                              >2d</span
+                            ><span class="me-2" role="img" aria-label="Emoji"
+                            >🙋‍</span
+                            >2d</span
                             >
                           </div>
                         </a>
@@ -697,7 +697,7 @@ const props = defineProps({
                     <a
                       class="card-link d-block"
                       href="../app/social/notifications.html"
-                      >View all</a
+                    >View all</a
                     >
                   </div>
                 </div>
@@ -727,25 +727,25 @@ const props = defineProps({
               >
                 <div class="bg-white dark__bg-1000 rounded-2 py-2">
                   <a class="dropdown-item fw-bold text-warning" href="#!"
-                    ><span class="fas fa-crown me-1"></span
-                    ><span>Go Pro</span></a
+                  ><span class="fas fa-crown me-1"></span
+                  ><span>Go Pro</span></a
                   >
 
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="#!">Set status</a>
                   <a class="dropdown-item" href="../pages/user/profile.html"
-                    >Profile &amp; account</a
+                  >Profile &amp; account</a
                   >
                   <a class="dropdown-item" href="#!">Feedback</a>
 
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="../pages/user/settings.html"
-                    >Settings</a
+                  >Settings</a
                   >
                   <a
                     class="dropdown-item"
                     href="../pages/authentication/card/logout.html"
-                    >Logout</a
+                  >Logout</a
                   >
                 </div>
               </div>
@@ -759,7 +759,7 @@ const props = defineProps({
               <p class="mb-0 text-600">
                 Thank you for creating with Falcon
                 <span class="d-none d-sm-inline-block">| </span
-                ><br class="d-sm-none" />
+                ><br class="d-sm-none"/>
                 2021 &copy; <a href="https://themewagon.com">Themewagon</a>
               </p>
             </div>
@@ -809,7 +809,7 @@ const props = defineProps({
                 </div>
                 <div class="mb-3">
                   <label class="form-label" for="modal-auth-email"
-                    >Email address</label
+                  >Email address</label
                   >
                   <input
                     class="form-control"
@@ -821,7 +821,7 @@ const props = defineProps({
                 <div class="row gx-2">
                   <div class="mb-3 col-sm-6">
                     <label class="form-label" for="modal-auth-password"
-                      >Password</label
+                    >Password</label
                     >
                     <input
                       class="form-control"
@@ -832,7 +832,7 @@ const props = defineProps({
                   </div>
                   <div class="mb-3 col-sm-6">
                     <label class="form-label" for="modal-auth-confirm-password"
-                      >Confirm Password</label
+                    >Confirm Password</label
                     >
                     <input
                       class="form-control"
@@ -849,7 +849,7 @@ const props = defineProps({
                     id="modal-auth-register-checkbox"
                   />
                   <label class="form-label" for="modal-auth-register-checkbox"
-                    >I accept the <a href="#!">terms </a>and
+                  >I accept the <a href="#!">terms </a>and
                     <a href="#!">privacy policy</a></label
                   >
                 </div>
@@ -864,7 +864,7 @@ const props = defineProps({
                 </div>
               </form>
               <div class="position-relative mt-5">
-                <hr class="bg-300" />
+                <hr class="bg-300"/>
                 <div class="divider-content-center">or register with</div>
               </div>
               <div class="row g-2 mt-2">
@@ -872,10 +872,10 @@ const props = defineProps({
                   <a
                     class="btn btn-outline-google-plus btn-sm d-block w-100"
                     href="#"
-                    ><span
-                      class="fab fa-google-plus-g me-2"
-                      data-fa-transform="grow-8"
-                    ></span>
+                  ><span
+                    class="fab fa-google-plus-g me-2"
+                    data-fa-transform="grow-8"
+                  ></span>
                     google</a
                   >
                 </div>
@@ -883,10 +883,10 @@ const props = defineProps({
                   <a
                     class="btn btn-outline-facebook btn-sm d-block w-100"
                     href="#"
-                    ><span
-                      class="fab fa-facebook-square me-2"
-                      data-fa-transform="grow-8"
-                    ></span>
+                  ><span
+                    class="fab fa-facebook-square me-2"
+                    data-fa-transform="grow-8"
+                  ></span>
                     facebook</a
                   >
                 </div>
@@ -897,7 +897,43 @@ const props = defineProps({
       </div>
     </div>
   </main>
+  <div class="test_spinn"></div>
   <!-- ===============================================-->
   <!--    End of Main Content-->
   <!-- ===============================================-->
 </template>
+<style>
+/*.test_spinn{*/
+/*width: 1623px;*/
+/*height: calc(100% - 86px);*/
+/*background: #0d6efd;*/
+/*position: fixed;*/
+/*top: 70px;*/
+/*z-index: 5000;*/
+/*right: 16px;*/
+/*border-radius: 0.375rem;*/
+/*}*/
+#nprogress .spinner {
+  position: fixed;
+  top: 70px !important;
+  bottom: 0 !important;
+  right: 16px !important;
+
+  width: 1623px !important;
+  height: calc(100% - 86px) !important;
+
+  border-radius: 0.375rem;
+  background: #0a17279e;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+#nprogress .spinner-icon {
+  width: 80px !important;
+  height: 80px !important;
+  border-top-color: #f5803e !important;
+  border-left-color: #f5803e !important;
+
+}
+</style>

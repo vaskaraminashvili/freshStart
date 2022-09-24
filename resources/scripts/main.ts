@@ -9,6 +9,7 @@ import Card from "@/views/components/admin/card.vue";
 import Toast, { useToast } from "vue-toastification";
 import "vue-toastification/dist/index.css";
 import { toastOptions } from "./customOptions";
+import GlobalComponents from './globals'
 import "@/sass/app.scss";
 // createInertiaApp({
 //     resolve: (name) =>
@@ -55,6 +56,7 @@ createInertiaApp({
             .component("Link", Link)
             .component("Card", Card)
             .use(plugin)
+            .use(GlobalComponents)
             .use(Toast, toastOptions)
             .mixin({ methods: { route } });
         // make toast available globaly (usage this.toast.success("I'm an info toast!");)
@@ -73,4 +75,7 @@ createInertiaApp({
 //     },
 // });
 
-InertiaProgress.init();
+InertiaProgress.init({
+    showSpinner: true,
+    // includeCSS: true
+});

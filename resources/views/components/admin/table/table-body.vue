@@ -13,11 +13,11 @@
                  :typeProps="field['typeProps'] !== undefined ? field['typeProps'] : ''"
       ></component>
       <component v-else
-                 :is="dynamicComp('default')"
+                 is="DefaultField"
                  :value="item[name]"
                  :typeProps="field['typeProps'] !== undefined ? field['typeProps'] : ''"
       ></component>
-
+      <!--      <component is="DefaultField"></component>-->
     </template>
     <!--    print customizable fileds -->
     <ActionsField :item="item" :customizable="customizable"></ActionsField>
@@ -27,12 +27,12 @@
 </template>
 
 <script>
-import {defineAsyncComponent} from "vue";
+// import {defineAsyncComponent} from "vue";
 import ActionsField from "@/views/components/admin/table/fields/actions-field.vue";
 
 export default {
   components: {
-    ActionsField
+    ActionsField,
   },
   props: {
     items: Object,
@@ -42,35 +42,18 @@ export default {
     }
   },
   methods: {
-    dynamicComp(fieldName) {
-      return defineAsyncComponent(() => import(`@/views/components/admin/table/fields/${fieldName}-field.vue`))
-    },
+    // dynamicComp(fieldName) {
+    //   return defineAsyncComponent(() => import(`@/views/components/admin/table/fields/${fieldName}-field.vue`))
+    // },
+ capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+},
     determineType(field) {
       if (field['typeProps'] !== undefined) {
-        // console.log('do something');
-        // let type = '';
-        // if (typeof typeProps == 'object'){
-        //   // typeProps.map(function(item, index) {
-        //   //   console.log(index, item)
-        //   // })
-        //   Object.entries(typeProps).map(([key, value]) => {
-        //     if (key === 'type'){
-        //       type = value;
-        //     }
-        //     console.log(key, value);
-        //   })
-        //   console.log(type);
-        //   return type;
-        // }else{
-        //   // console.log(typeProps);
-        //   return typeProps;
-        // }
-
-        return this.dynamicComp(field['type'])
+        return this.capitalizeFirstLetter(field['type'])+'Field';
       } else {
-        return this.dynamicComp(field['type'])
-
-      }
+        return this.capitalizeFirstLetter(field['type'])+'Field';
+        }
     }
   },
 }
