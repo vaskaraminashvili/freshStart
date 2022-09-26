@@ -77,5 +77,5 @@ createInertiaApp({
 
 InertiaProgress.init({
     showSpinner: true,
-    // includeCSS: true
+    includeCSS: false
 });

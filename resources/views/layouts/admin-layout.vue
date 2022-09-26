@@ -913,27 +913,27 @@ const props = defineProps({
 /*right: 16px;*/
 /*border-radius: 0.375rem;*/
 /*}*/
-#nprogress .spinner {
-  position: fixed;
-  top: 70px !important;
-  bottom: 0 !important;
-  right: 16px !important;
+/*#nprogress .spinner {*/
+/*  position: fixed;*/
+/*  top: 70px !important;*/
+/*  bottom: 0 !important;*/
+/*  right: 16px !important;*/
 
-  width: 1623px !important;
-  height: calc(100% - 86px) !important;
+/*  width: 1623px !important;*/
+/*  height: calc(100% - 86px) !important;*/
 
-  border-radius: 0.375rem;
-  background: #0a17279e;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
+/*  border-radius: 0.375rem;*/
+/*  background: #0a17279e;*/
+/*  display: flex !important;*/
+/*  align-items: center !important;*/
+/*  justify-content: center !important;*/
+/*}*/
 
-#nprogress .spinner-icon {
-  width: 80px !important;
-  height: 80px !important;
-  border-top-color: #f5803e !important;
-  border-left-color: #f5803e !important;
+/*#nprogress .spinner-icon {*/
+/*  width: 80px !important;*/
+/*  height: 80px !important;*/
+/*  border-top-color: #f5803e !important;*/
+/*  border-left-color: #f5803e !important;*/
 
-}
+/*}*/
 </style>

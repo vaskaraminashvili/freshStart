@@ -35,6 +35,7 @@ class DummyController extends Controller
      */
     public function index()
     {
+//        sleep(3);
         $dummies = Dummy::query()
             ->with(['status'])
             ->customSort()

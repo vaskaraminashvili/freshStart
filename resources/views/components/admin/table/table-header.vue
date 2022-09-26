@@ -23,45 +23,26 @@ import {pickBy, debounce, throttle} from "lodash";
 export default {
   props: {
     filters: Object,
+    params: Object,
     customizable: {
       required: true,
       type: Object,
     }
   },
-  data() {
-    return {
-      params: {
-        search: this.filters.search,
-        field: this.filters.field,
-        direction: this.filters.direction,
-      },
-    }
-  },
+
   methods: {
-    sort(field) {
-      this.params.field = field;
-      this.params.direction = this.params.direction === "asc" ? "desc" : "asc";
+    sort(name) {
+      this.$emit('sort', name)
     },
-    inArray(needle, haystack) {
-      var length = haystack.length;
-      for (var i = 0; i < length; i++) {
-        if (haystack[i] == needle) return true;
-      }
-      return false;
-    }
+    // inArray(needle, haystack) {
+    //   var length = haystack.length;
+    //   for (var i = 0; i < length; i++) {
+    //     if (haystack[i] == needle) return true;
+    //   }
+    //   return false;
+    // }
   },
-  watch: {
-    params: {
-      handler: debounce(function () {
-        let params = pickBy(this.params);
-        this.$inertia.get(this.route("admin.dummies.index"), params, {
-          replace: true,
-          preserveState: true,
-        });
-      }, 500),
-      deep: true,
-    },
-  },
+
 
 }
 </script>
