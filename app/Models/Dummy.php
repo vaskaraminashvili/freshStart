@@ -21,11 +21,12 @@ class Dummy extends Model
             'fields' =>[
                 'name' => [
                     'sortable' => true,
-                    'searchable' => true,
+                    'filterable' => true,
 //                    'type' => 'text' , // text can be default!!  there could be several and after added new types || text , number , money , status, switch
                 ],
                 'address' => [
                     'sortable' => true,
+                    'filterable' => true,
                 ],
                 'email' => [
                     'sortable' => true,

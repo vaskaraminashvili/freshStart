@@ -1,7 +1,7 @@
 <template>
   <!-- filters  -->
   <div id="" class="d-flex flex-column">
-    <Filter @filter="filter"/>
+    <Filter @filter="filter" :customizable="customizable"/>
     <div class="mb-0">
       <button class="btn btn-sm btn-falcon-warning me-1 " type="button" @click="reset">
         <span class="far fa-times-circle me-1" data-fa-transform="shrink-3"></span>
