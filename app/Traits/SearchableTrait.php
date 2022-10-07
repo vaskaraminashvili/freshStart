@@ -10,10 +10,14 @@ use Illuminate\Http\Request;
 trait SearchableTrait
 {
 
-    public function scopeCustomSearch($query){
+    public function scopeCustomSearch($query)
+    {
+        $request = request();
 
         if (request()->has('search')) {
-            $query->where('name', 'LIKE', '%'.request('search').'%');
+            foreach ($request['search'] as $field => $value) {
+                $query->where($field, 'LIKE', '%' . $value . '%');
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
 <template>
   <!-- filters  -->
   <div id="" class="d-flex flex-column">
-    <Filter @filter="filter" :customizable="customizable"/>
+    <Filter @filter="filter" :customizable="customizable" :params="params"/>
     <div class="mb-0">
       <button class="btn btn-sm btn-falcon-warning me-1 " type="button" @click="reset">
         <span class="far fa-times-circle me-1" data-fa-transform="shrink-3"></span>
@@ -65,8 +65,8 @@ export default {
         preserveState: true,
       });
     }, 700),
-    filter(text){
-      this.params.search = text;
+    filter(object){
+      this.params.search[object.field] = object.value;
     },
     sort(name) {
       this.params.field = name;

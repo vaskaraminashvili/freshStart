@@ -9,8 +9,9 @@
             class="form-control"
             :id="name"
             type="search"
+            :value="params.search[name]"
             :placeholder="name"
-            @keyup="filter()"
+            @input="filter($event)"
           />
         </div>
       </div>
@@ -19,16 +20,19 @@
 </template>
 
 <script>
+import _ from "lodash";
 export default {
   props: {
+    params: Object,
     customizable: {
       type: Object,
     },
   },
   methods: {
-    filter() {
-      this.$emit('filter', event.target.value);
-    }
+
+    filter: _.debounce(function (event) {
+      this.$emit('filter', {field : event.target.id, value : event.target.value});
+    }, 500)
   },
 }
 </script>
