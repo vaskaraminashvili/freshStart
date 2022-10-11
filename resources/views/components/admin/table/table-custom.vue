@@ -52,7 +52,7 @@ export default {
   data() {
     return {
       params: {
-        search: this.filters.search,
+        search:  this.filters.search === null ?  {} : this.filters.search ,
         field: this.filters.field,
         direction: this.filters.direction,
       },
@@ -64,14 +64,16 @@ export default {
         replace: true,
         preserveState: true,
       });
+      this.params.search = {};
     }, 700),
     filter(object){
-      this.params.search[object.field] = object.value;
+        return this.params.search[object.field] = object.value;
     },
     sort(name) {
       this.params.field = name;
       this.params.direction = this.params.direction === "asc" ? "desc" : "asc";
     },
+
   },
 
   watch: {

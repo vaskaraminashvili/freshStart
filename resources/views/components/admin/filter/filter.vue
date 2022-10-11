@@ -9,7 +9,7 @@
             class="form-control"
             :id="name"
             type="search"
-            :value="params.search[name]"
+            :value="fieldValue(name)"
             :placeholder="name"
             @input="filter($event)"
           />
@@ -21,6 +21,7 @@
 
 <script>
 import _ from "lodash";
+
 export default {
   props: {
     params: Object,
@@ -31,14 +32,23 @@ export default {
   methods: {
 
     filter: _.debounce(function (event) {
-      this.$emit('filter', {field : event.target.id, value : event.target.value});
-    }, 500)
+      this.$emit('filter', {field: event.target.id, value: event.target.value});
+    }, 500),
+    fieldValue(name) {
+      if (this.params.search !== null && this.params.search[name] !== undefined) {
+        return this.params.search[name];
+      } else {
+        return "";
+
+      }
+    }
   },
+
 }
 </script>
 
 <style scoped>
-label, input::placeholder{
+label, input::placeholder {
   text-transform: capitalize;
 }
 </style>
