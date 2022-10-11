@@ -27,6 +27,7 @@ class Dummy extends Model
                 'address' => [
                     'sortable' => true,
                     'filterable' => true,
+                    'filtertype' => 'number',
                 ],
                 'email' => [
                     'sortable' => true,

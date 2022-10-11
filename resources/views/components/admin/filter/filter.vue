@@ -1,26 +1,23 @@
 <template>
   <div class="row">
-    <template v-for="(field,name) in customizable.fields" :key="name">
+    <template v-for="(field,name) in this.customizable.fields" :key="name">
+      <template v-if="field.filterable">
+        <component v-if="field['filtertype'] !== undefined"
+                   :is="determineType(field)"
+                   :name="name" :params="params" @filter="filter"
+        ></component>
+        <component v-else
+                   is="DefaultFilter"
+                   :name="name" :params="params" @filter="filter"
 
-      <div class="col-xl-3" v-if="field.filterable">
-        <div class="mb-3">
-          <label class="form-label" for="Search">{{ name }}</label>
-          <input
-            class="form-control"
-            :id="name"
-            type="search"
-            :value="fieldValue(name)"
-            :placeholder="name"
-            @input="filter($event)"
-          />
-        </div>
-      </div>
+        ></component>
+      </template>
+
     </template>
   </div>
 </template>
 
 <script>
-import _ from "lodash";
 
 export default {
   props: {
@@ -30,20 +27,23 @@ export default {
     },
   },
   methods: {
-
-    filter: _.debounce(function (event) {
-      this.$emit('filter', {field: event.target.id, value: event.target.value});
-    }, 500),
-    fieldValue(name) {
-      if (this.params.search !== null && this.params.search[name] !== undefined) {
-        return this.params.search[name];
+    filter(object){
+      this.$emit('filter', {field: object.field, value: object.value});
+    },
+    capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    },
+    determineType(field) {
+      console.log(field)
+      console.log(field['filtertype'])
+      if (field['typeProps'] !== undefined) {
+        return this.capitalizeFirstLetter(field['filtertype']) + 'Filter';
       } else {
-        return "";
-
+        return this.capitalizeFirstLetter(field['filtertype']) + 'Filter';
       }
     }
-  },
 
+  },
 }
 </script>
 

@@ -45,15 +45,15 @@ export default {
     // dynamicComp(fieldName) {
     //   return defineAsyncComponent(() => import(`@/views/components/admin/table/fields/${fieldName}-field.vue`))
     // },
- capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-},
+    capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    },
     determineType(field) {
       if (field['typeProps'] !== undefined) {
-        return this.capitalizeFirstLetter(field['type'])+'Field';
+        return this.capitalizeFirstLetter(field['type']) + 'Field';
       } else {
-        return this.capitalizeFirstLetter(field['type'])+'Field';
-        }
+        return this.capitalizeFirstLetter(field['type']) + 'Field';
+      }
     }
   },
 }
