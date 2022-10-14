@@ -10,6 +10,7 @@ import Toast, { useToast } from "vue-toastification";
 import "vue-toastification/dist/index.css";
 import { toastOptions } from "./customOptions";
 import GlobalComponents from './globals'
+import { createPinia } from 'pinia'
 import "@/sass/app.scss";
 // createInertiaApp({
 //     resolve: (name) =>
@@ -55,6 +56,7 @@ createInertiaApp({
             .component("Head", Head)
             .component("Link", Link)
             .component("Card", Card)
+            .use(createPinia())
             .use(plugin)
             .use(GlobalComponents)
             .use(Toast, toastOptions)

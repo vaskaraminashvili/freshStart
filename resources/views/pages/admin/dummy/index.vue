@@ -10,13 +10,15 @@
         :filters="filters"
         :customizable="customizable"
       />
+    {{count}}
     </template>
   </Card>
 </template>
 
 <script>
 import TableCustom from "@/views/components/admin/table/table-custom.vue";
-
+import {useModuleStore} from "@/scripts/stores/ModuleStore.js";
+import { mapState } from 'pinia'
 export default {
   components: {
     TableCustom
@@ -25,6 +27,9 @@ export default {
     items: Object,
     filters: Object,
     customizable: Object,
+  },
+  computed: {
+    ...mapState(useModuleStore, ['count'])
   },
 
 };
