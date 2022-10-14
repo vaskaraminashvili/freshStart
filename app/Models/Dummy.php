@@ -27,7 +27,7 @@ class Dummy extends Model
                 'address' => [
                     'sortable' => true,
                     'filterable' => true,
-                    'filtertype' => 'number',
+//                    'filtertype' => 'default',
                 ],
                 'email' => [
                     'sortable' => true,
@@ -37,14 +37,14 @@ class Dummy extends Model
                     'type' => 'money' // type can be array and pass some things like PREFIX SUFFIX or other things  NEEDS TO BE CHECKED IF ARRAY
                 ],
                 'phone' => [
-                    'type' => 'phone',
+                    'fieldType' => 'phone',
                     'typeProps' => [
                         'suffix' => '##',
                         'prefix' => '##asd'
                     ]
                 ],
                 'active' => [
-                    'type' => 'status'
+                    'fieldType' => 'status'
                 ],
             ],
 
