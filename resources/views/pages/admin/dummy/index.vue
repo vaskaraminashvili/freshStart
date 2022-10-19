@@ -16,8 +16,13 @@
 
 <script>
 import TableCustom from "@/views/components/admin/table/table-custom.vue";
+import {useModuleStore} from "@/scripts/stores/ModuleStore.js";
+import {mapState, mapActions} from 'pinia'
 
 export default {
+  beforeMount() {
+    this.setupModule(this.customizable, this.filters)
+  },
   components: {
     TableCustom
   },
@@ -25,6 +30,12 @@ export default {
     items: Object,
     filters: Object,
     customizable: Object,
+  },
+  computed: {
+    ...mapState(useModuleStore, ['count'])
+  },
+  methods: {
+    ...mapActions(useModuleStore, ['setupModule'])
   },
 
 };

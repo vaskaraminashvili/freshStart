@@ -1,7 +1,7 @@
 <template>
   <!-- filters  -->
   <div id="" class="d-flex flex-column">
-    <Filter @filter="filter" :customizable="customizable" :params="params"/>
+    <Filter :customizable="customizable"/>
     <div class="mb-0">
       <button class="btn btn-sm btn-falcon-warning me-1 " type="button" @click="reset">
         <span class="far fa-times-circle me-1" data-fa-transform="shrink-3"></span>
@@ -30,6 +30,8 @@ import TableBody from "@/views/components/admin/table/table-body.vue";
 import Pagination from "@/views/components/admin/ui/pagination.vue";
 import Filter from "@/views/components/admin/filter/filter.vue"
 import {debounce, pickBy} from "lodash";
+import {useModuleStore} from "@/scripts/stores/ModuleStore.js";
+import {mapState} from "pinia";
 
 export default {
   components: {
@@ -44,6 +46,10 @@ export default {
     customizable: Object,
   },
   computed: {
+    ...mapState(useModuleStore, {
+      fields : "customizable",
+      filt : "filters",
+}),
     dataList() {
       let listItem = {'valueNames': Object.keys(this.customizable.fields)};
       return JSON.stringify(listItem);
@@ -66,9 +72,7 @@ export default {
       });
       this.params.search = {};
     }, 700),
-    filter(object){
-        return this.params.search[object.field] = object.value;
-    },
+
     sort(name) {
       this.params.field = name;
       this.params.direction = this.params.direction === "asc" ? "desc" : "asc";

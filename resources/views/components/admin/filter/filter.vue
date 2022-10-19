@@ -4,11 +4,11 @@
       <template v-if="field.filterable">
         <component v-if="field['filtertype'] !== undefined"
                    :is="determineType(field)"
-                   :name="name" :params="params" @filter="filter"
+                   :name="name"
         ></component>
         <component v-else
                    is="DefaultFilter"
-                   :name="name" :params="params" @filter="filter"
+                   :name="name"
 
         ></component>
       </template>
@@ -18,24 +18,22 @@
 </template>
 
 <script>
+import {useModuleStore} from "@/scripts/stores/ModuleStore.js";
+import {mapState} from "pinia";
 
 export default {
   props: {
-    params: Object,
-    customizable: {
-      type: Object,
-    },
+
+  },
+  computed: {
+    ...mapState(useModuleStore, ['customizable'])
   },
   methods: {
-    filter(object){
-      this.$emit('filter', {field: object.field, value: object.value});
-    },
+
     capitalizeFirstLetter(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
     },
     determineType(field) {
-      console.log(field)
-      console.log(field['filtertype'])
       if (field['typeProps'] !== undefined) {
         return this.capitalizeFirstLetter(field['filtertype']) + 'Filter';
       } else {

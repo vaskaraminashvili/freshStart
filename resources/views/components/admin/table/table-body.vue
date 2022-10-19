@@ -7,7 +7,7 @@
   >
     <!--    print customizable fileds -->
     <template v-for="(field,name) in customizable.fields">
-      <component v-if="field['type'] !== undefined"
+      <component v-if="field['fieldType'] !== undefined"
                  :is="determineType(field)"
                  :value="item[name]"
                  :typeProps="field['typeProps'] !== undefined ? field['typeProps'] : ''"
@@ -50,9 +50,9 @@ export default {
     },
     determineType(field) {
       if (field['typeProps'] !== undefined) {
-        return this.capitalizeFirstLetter(field['type']) + 'Field';
+        return this.capitalizeFirstLetter(field['fieldType']) + 'Field';
       } else {
-        return this.capitalizeFirstLetter(field['type']) + 'Field';
+        return this.capitalizeFirstLetter(field['fieldType']) + 'Field';
       }
     }
   },
