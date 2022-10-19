@@ -37,6 +37,7 @@ class DummyController extends Controller
     {
 //        sleep(3);
         $dummies = Dummy::query()
+            ->select(['id','name','address','email','amount','phone', 'status_id'])
             ->with(['status'])
             ->customSort()
             ->customSearch()
