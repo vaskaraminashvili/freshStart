@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 /**
  * Sortable trait.
@@ -14,10 +15,9 @@ trait SearchableTrait
     {
         $request = request();
         $customizable = collect(self::$customizable);
-
         if (request()->has('search')) {
             foreach ($request['search'] as $field => $value) {
-                $condition = $customizable->pluck('fields.' . $field . '.filterProps.condition')->first();
+                $condition = $customizable->pluck('fields.' . $field . '.filterProps.condition')->first() ?? '';
                 $this->determineCondition($field, $condition, $value, $query);
             }
         }
@@ -32,13 +32,27 @@ trait SearchableTrait
      */
     public function determineCondition($field, string $condition = 'contains', $value, $query)
     {
-        if ($condition == 'contains') {
-            return $query->where($field, 'LIKE', '%' . $value . '%');
-        } elseif ($condition == 'equal') {
-            return $query->where($field, $value);
+
+        if (!empty($condition)) {
+            $scope = 'where' . Str::ucfirst($condition);
+            $query->$scope($field, $value);
         } else {
-            return $query->where($field, 'LIKE', '%' . $value . '%');
+            $query->where($field, 'LIKE', '%' . $value . '%');
+
         }
+
+
     }
 
+
+    public function scopeWhereContains($query, $field, $value)
+    {
+        return $query->where($field, 'LIKE', '%' . $value . '%');
+    }
+
+
+    public function scopeWhereEqual($query, $field, $value)
+    {
+        return $query->where($field, $value);
+    }
 }

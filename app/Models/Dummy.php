@@ -29,7 +29,7 @@ class Dummy extends Model
                     'filterable' => true,
 //                    'filtertype' => 'default',
                     'filterProps' => [
-                        'condition' => 'equal' // contains => LIKE '%EXAMPLE%' , equal => =
+                        'contains' => 'equal' // contains => LIKE '%EXAMPLE%' , equal => =
                     ]
                 ],
                 'email' => [

@@ -38,8 +38,8 @@ class DummyController extends Controller
 //        sleep(3);
         $dummies = Dummy::query()
             ->with(['status'])
-            ->customSort()
             ->customSearch()
+            ->customSort()
             ->withTrashed()
             ->orderBy('id')->paginate(20)->withQueryString();
 //        dd($dummies);
