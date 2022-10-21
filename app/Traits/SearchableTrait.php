@@ -11,7 +11,11 @@ use Illuminate\Support\Str;
 trait SearchableTrait
 {
 
-    public function scopeCustomSearch($query)
+    /**
+     * @param $query
+     * @return void
+     */
+    public function scopeCustomSearch($query): void
     {
         $request = request();
         $customizable = collect(self::$customizable);
@@ -28,31 +32,25 @@ trait SearchableTrait
      * @param string $condition
      * @param $value
      * @param $query
-     * @return mixed|void
+     * @return void
      */
-    public function determineCondition($field, string $condition = 'contains', $value, $query)
+    public function determineCondition($field, string $condition = 'contains', $value, $query): void
     {
-
         if (!empty($condition)) {
+
             $scope = 'where' . Str::ucfirst($condition);
+//            dd($scope);
             $query->$scope($field, $value);
         } else {
             $query->where($field, 'LIKE', '%' . $value . '%');
 
         }
+            $query->whereRelationEqual();
+
+//        dd($query->toSql());
 
 
     }
 
 
-    public function scopeWhereContains($query, $field, $value)
-    {
-        return $query->where($field, 'LIKE', '%' . $value . '%');
-    }
-
-
-    public function scopeWhereEqual($query, $field, $value)
-    {
-        return $query->where($field, $value);
-    }
 }

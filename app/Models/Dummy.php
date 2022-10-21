@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
+use App\Traits\FilterScopeTrait;
 use App\Traits\SearchableTrait;
 use App\Traits\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Dummy extends Model
 {
-    use SoftDeletes, SortableTrait, SearchableTrait;
+    use SoftDeletes, SortableTrait, SearchableTrait, FilterScopeTrait;
 
 //    maybe find better way sometimes
     public static $customizable = [
@@ -28,9 +30,9 @@ class Dummy extends Model
                     'sortable' => true,
                     'filterable' => true,
 //                    'filtertype' => 'default',
-                    'filterProps' => [
-                        'contains' => 'equal' // contains => LIKE '%EXAMPLE%' , equal => =
-                    ]
+//                    'filterProps' => [
+//                        'contains' => 'equal' // contains => LIKE '%EXAMPLE%' , equal => =
+//                    ]
                 ],
                 'email' => [
                     'sortable' => true,
@@ -73,7 +75,10 @@ class Dummy extends Model
 
     protected $fillable = ['name', 'address', 'email', 'amount', 'phone', 'status'];
 
-    public function status()
+    /**
+     * @return BelongsTo
+     */
+    public function status(): BelongsTo
     {
         return $this->belongsTo(Status::class);
     }

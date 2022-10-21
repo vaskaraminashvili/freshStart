@@ -7,6 +7,7 @@
           "
         >
           {{ value ? "Active" : "Not Active" }}
+          {{ value }}
           <span
             class="ms-1 fas fa-check"
             data-fa-transform="shrink-2"

@@ -38,16 +38,17 @@ class DummyController extends Controller
 //        sleep(3);
         $dummies = Dummy::query()
             ->with(['status'])
-            ->customSearch()
-            ->customSort()
+//            ->customSearch()
+//            ->customSort()
+                ->whereRelationEqual()
             ->withTrashed()
             ->orderBy('id')->paginate(20)->withQueryString();
 //        dd($dummies);
         $this->data['items'] = DummyResource::collection($dummies);
 //        dd($this->data);
         $this->data['filters'] = request()->all(['search' , 'field' , 'direction']);
-
-        return Inertia::render('@.dummy.index', $this->data);
+//dd($this->data['items']);
+return Inertia::render('@.dummy.index', $this->data);
     }
 
     /**
