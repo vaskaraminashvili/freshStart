@@ -1,15 +1,22 @@
 <template>
   <div class="col-xl-3">
     <div class="mb-3">
-      <label class="form-label" for="Search">{{ name.toUpperCase() }} (Number field testing) </label>
-      <input
-        class="form-control"
-        :id="name"
-        type="number"
-        :value="fieldValue(name)"
-        :placeholder="name"
-        @input="filter($event)"
-      />
+      <label class="form-label" for="Search">{{ name.toUpperCase() }}</label>
+<!--      <input-->
+<!--        class="form-control"-->
+<!--        :id="name"-->
+<!--        type="search"-->
+<!--        :value="fieldValue(name)"-->
+<!--        :placeholder="name"-->
+<!--        @input="filter($event)"-->
+<!--      />-->
+
+      <select class="form-select" aria-label="Default select example">
+        <option selected="">Open this select menu</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
     </div>
   </div>
 </template>

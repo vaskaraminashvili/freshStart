@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Support\Str;
-use Inertia\Inertia;
-use App\Models\Dummy;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DummyResource;
-use App\Http\Requests\StoreDummyRequest;
+use App\Models\Dummy;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Inertia\Inertia;
 
 class DummyController extends Controller
 {
@@ -43,7 +42,7 @@ class DummyController extends Controller
                 $class = Str::ucfirst($class);
                 $class ='App\Models\\'.$class;
                 $elements = $class::all();
-                $this->data[$plural_field] = $elements;
+                $this->data['relations'][$plural_field] = $elements;
             }
         }
         $dummies = Dummy::query()
@@ -54,7 +53,8 @@ class DummyController extends Controller
             ->orderBy('id')->paginate(20)->withQueryString();
         $this->data['items'] = DummyResource::collection($dummies);
         $this->data['filters'] = request()->all(['search' , 'field' , 'direction']);
-return Inertia::render('@.dummy.index', $this->data);
+//        dd($this->data);
+        return Inertia::render('@.dummy.index', $this->data);
     }
 
     /**

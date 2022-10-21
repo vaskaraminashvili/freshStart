@@ -48,6 +48,10 @@ export default {
     items: Object,
     filters: Object,
     customizable: Object,
+    relations: {
+      type: Object,
+      default: null
+    },
   },
   computed: {
     ...mapState(useModuleStore, ['count'])

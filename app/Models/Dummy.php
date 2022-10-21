@@ -54,6 +54,8 @@ class Dummy extends Model
                 ],
                 'status' => [
                     'fieldType' => 'status',
+                    'filterable' => true,
+                    'filtertype' => 'relation',
                     'filterProps' => [
                         'relation' => [
                             'type' => 'belongsTo',

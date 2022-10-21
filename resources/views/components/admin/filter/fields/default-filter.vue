@@ -1,7 +1,7 @@
 <template>
   <div class="col-xl-3">
     <div class="mb-3">
-      <label class="form-label" for="Search">{{ name }}</label>
+      <label class="form-label" for="Search">{{ name.toUpperCase() }}</label>
       <input
         class="form-control"
         :id="name"
