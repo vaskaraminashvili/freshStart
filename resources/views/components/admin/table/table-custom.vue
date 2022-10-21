@@ -1,15 +1,5 @@
 <template>
-  <!-- filters  -->
-  <div id="" class="d-flex flex-column">
-    <Filter :customizable="customizable"/>
-    <div class="mb-0">
-      <button class="btn btn-sm btn-falcon-warning me-1 " type="button" @click="reset">
-        <span class="far fa-times-circle me-1" data-fa-transform="shrink-3"></span>
-        Reset Filter
-      </button>
-    </div>
-  </div>
-  <!-- filters  -->
+
   <div class="table-responsive table-responsive-xxl scrollbar">
     <table
       class="table table-hover table-striped overflow-hidden"
@@ -28,14 +18,12 @@
 import TableHeader from "@/views/components/admin/table/table-header.vue";
 import TableBody from "@/views/components/admin/table/table-body.vue";
 import Pagination from "@/views/components/admin/ui/pagination.vue";
-import Filter from "@/views/components/admin/filter/filter.vue"
 import {debounce, pickBy} from "lodash";
 import {useModuleStore} from "@/scripts/stores/ModuleStore.js";
 import {mapState} from "pinia";
 
 export default {
   components: {
-    Filter,
     TableHeader,
     TableBody,
     Pagination,

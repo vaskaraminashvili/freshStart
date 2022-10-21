@@ -22,6 +22,7 @@ class DummyResource extends JsonResource
             'address' => Str::limit($this->address, 20, ' (...)'),
             'phone' => $this->phone,
             'amount' => $this->amount,
+            'status' => $this->status?->name ?? 'No Status',
             'active' => (bool)!$this->deleted_at,
         ];
     }

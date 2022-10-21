@@ -37,18 +37,12 @@ trait SearchableTrait
     public function determineCondition($field, string $condition = 'contains', $value, $query): void
     {
         if (!empty($condition)) {
-
             $scope = 'where' . Str::ucfirst($condition);
-//            dd($scope);
             $query->$scope($field, $value);
         } else {
             $query->where($field, 'LIKE', '%' . $value . '%');
 
         }
-            $query->whereRelationEqual();
-
-//        dd($query->toSql());
-
 
     }
 

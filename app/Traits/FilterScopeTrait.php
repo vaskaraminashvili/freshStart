@@ -33,8 +33,13 @@ trait FilterScopeTrait
     }
 
 
-    public function scopeWhereRelationEqual($query)
+    /**
+     * @param $query
+     * @return void
+     */
+    public function scopeWhereRelationEqual($query): void
     {
-        $query->where('status_id', 3);
+        $query->where('status_id', 2);
     }
+
 }

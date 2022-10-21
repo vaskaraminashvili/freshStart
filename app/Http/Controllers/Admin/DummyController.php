@@ -35,19 +35,25 @@ class DummyController extends Controller
      */
     public function index()
     {
-//        sleep(3);
+
+        foreach (Dummy::$customizable['index']['fields'] as $field){
+            if (isset($field['filterProps']['relation'])){
+                $plural_field = Str::plural($field['filterProps']['relation']['name']);
+                $class = Str::plural($field['filterProps']['relation']['name'], 1);
+                $class = Str::ucfirst($class);
+                $class ='App\Models\\'.$class;
+                $elements = $class::all();
+                $this->data[$plural_field] = $elements;
+            }
+        }
         $dummies = Dummy::query()
             ->with(['status'])
-//            ->customSearch()
-//            ->customSort()
-                ->whereRelationEqual()
+            ->customSearch()
+            ->customSort()
             ->withTrashed()
             ->orderBy('id')->paginate(20)->withQueryString();
-//        dd($dummies);
         $this->data['items'] = DummyResource::collection($dummies);
-//        dd($this->data);
         $this->data['filters'] = request()->all(['search' , 'field' , 'direction']);
-//dd($this->data['items']);
 return Inertia::render('@.dummy.index', $this->data);
     }
 

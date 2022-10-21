@@ -52,8 +52,17 @@ class Dummy extends Model
                         'prefix' => '##asd'
                     ]
                 ],
+                'status' => [
+                    'fieldType' => 'status',
+                    'filterProps' => [
+                        'relation' => [
+                            'type' => 'belongsTo',
+                            'name' => 'status',
+                        ]
+                    ]
+                ],
                 'active' => [
-                    'fieldType' => 'status'
+                    'fieldType' => 'active' // maybe switch active field type to SWITCH button in future and update it in background and send toast
                 ],
             ],
 
