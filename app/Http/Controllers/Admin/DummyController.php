@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Support\Str;
-use Inertia\Inertia;
-use App\Models\Dummy;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DummyResource;
-use App\Http\Requests\StoreDummyRequest;
+use App\Http\Resources\GeneralResource;
+use App\Models\Dummy;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Inertia\Inertia;
 
 class DummyController extends Controller
 {
-    public $data=[];
+    public $data = [];
 
     public function __construct()
     {
 
-        $method_name =request()->route()->getActionMethod();
-        $customizable = array_key_exists( $method_name,Dummy::$customizable) ? Dummy::$customizable[$method_name] : [];
+        $method_name = request()->route()->getActionMethod();
+        $customizable = array_key_exists($method_name, Dummy::$customizable) ? Dummy::$customizable[$method_name] : [];
         $customizable['currentModel'] = [
             'singular' => Dummy::$customizable['index']['model'],
             'plural' => Str::plural(Dummy::$customizable['index']['model']),
@@ -35,18 +35,34 @@ class DummyController extends Controller
      */
     public function index()
     {
-//        sleep(3);
+
+        foreach (Dummy::$customizable['index']['fields'] as $field) {
+            if (isset($field['filterProps']['relation'])) {
+                $plural_field = Str::plural($field['filterProps']['relation']['name']);
+                $class = Str::plural($field['filterProps']['relation']['name'], 1);
+                $class = Str::ucfirst($class);
+                $class = 'App\Models\\' . $class;
+                $elements = $class::query()
+                    ->get()
+                    ->map(fn($item) => [
+                        'id' => $item->id,
+                        'name' => $item->name,
+                    ]);
+
+//                $this->data['relations'][$plural_field] =  GeneralResource::collection($elements);
+                $this->data['relations'][$plural_field] = $elements;
+            }
+        }
         $dummies = Dummy::query()
             ->with(['status'])
-            ->customSort()
             ->customSearch()
+            ->customSort()
             ->withTrashed()
             ->orderBy('id')->paginate(20)->withQueryString();
-//        dd($dummies);
         $this->data['items'] = DummyResource::collection($dummies);
 //        dd($this->data);
-        $this->data['filters'] = request()->all(['search' , 'field' , 'direction']);
-
+        $this->data['filters'] = request()->all(['search', 'field', 'direction']);
+//        dd($this->data);
         return Inertia::render('@.dummy.index', $this->data);
     }
 
@@ -63,7 +79,7 @@ class DummyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -74,7 +90,7 @@ class DummyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -85,7 +101,7 @@ class DummyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -108,8 +124,8 @@ class DummyController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Dummy $dummy, Request $request)
@@ -133,7 +149,7 @@ class DummyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
+use App\Traits\FilterScopeTrait;
 use App\Traits\SearchableTrait;
 use App\Traits\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Dummy extends Model
 {
-    use SoftDeletes, SortableTrait, SearchableTrait;
+    use SoftDeletes, SortableTrait, SearchableTrait, FilterScopeTrait;
 
 //    maybe find better way sometimes
     public static $customizable = [
@@ -18,7 +20,7 @@ class Dummy extends Model
 //            this is the model used , after this will be transformed to upper and plural
             'model' => 'dummy',
             // here will be described fields one by one field will have several attribute to described it
-            'fields' =>[
+            'fields' => [
                 'name' => [
                     'sortable' => true,
                     'filterable' => true,
@@ -27,43 +29,69 @@ class Dummy extends Model
                 'address' => [
                     'sortable' => true,
                     'filterable' => true,
-                    'filtertype' => 'number',
+//                    'filtertype' => 'default',
+//                    'filterProps' => [
+//                        'contains' => 'equal' // contains => LIKE '%EXAMPLE%' , equal => =
+//                    ]
                 ],
                 'email' => [
                     'sortable' => true,
                 ],
                 'amount' => [
                     'sortable' => true,
-                    'type' => 'money' // type can be array and pass some things like PREFIX SUFFIX or other things  NEEDS TO BE CHECKED IF ARRAY
+                    'fieldType' => 'money', // type can be array and pass some things like PREFIX SUFFIX or other things  NEEDS TO BE CHECKED IF ARRAY
+                    'filterable' => true,
+                    'filterProps' => [
+                        'condition' => 'equal' // contains => LIKE '%EXAMPLE%' , equal => =
+                    ]
                 ],
                 'phone' => [
-                    'type' => 'phone',
+                    'fieldType' => 'phone',
                     'typeProps' => [
                         'suffix' => '##',
                         'prefix' => '##asd'
                     ]
                 ],
+                'status' => [
+                    'fieldType' => 'status',
+                    'filterable' => true,
+                    'filtertype' => 'relation',
+                    'filterProps' => [
+                        'relation' => [
+                            'type' => 'belongsTo',
+                            'name' => 'status',
+                            'condition' => 'equal'
+                        ]
+                    ]
+                ],
                 'active' => [
-                    'type' => 'status'
+                    'fieldType' => 'active' // maybe switch active field type to SWITCH button in future and update it in background and send toast
                 ],
             ],
 
 
-
-//            'fields' => [
-//                // base on this field will displayed in table head and body
-//                //this shoud be same as field names in DB
-//                'name', 'address', 'email', 'amount', 'phone', 'status'
-//            ],
-//            'sortable' => [
-//                'name'
-//            ],
         ]
     ];
+//    $customizable this is the variable that customizes model differant actions for start we have index
+//    $customizable is created key named index
+//    that index have 2 key model name and fields
+//    fields itself contain different fields and there description for index(table) function
+//    field have different attributes such as fieldType, typeProps, sortable, filterable
+//    sortable|noncompulsory (default false), allows to sort table by column
+//    fieldType|noncompulsory(have default value) describes how that column will look like there are pre built components for every field type and can be added new types and components
+//    typeProps|noncompulsory this will pass additional info or anything needed for custom field component. exm. suffix or prefix or money format or date format
+//    filterable|noncompulsory(default false) , if set to true new field will be shown above table
+//    filtertype|noncompulsory(have default value) describes how that field will look like there are pre built components for every field type and can be added new types and components
+//    filterProps|noncompulsory this will pass adition data for filtering example instead of default `LIKE` for filtering can be passed greater then and others
+
 
     protected $fillable = ['name', 'address', 'email', 'amount', 'phone', 'status'];
 
-    public function status(){
+    /**
+     * @return BelongsTo
+     */
+    public function status(): BelongsTo
+    {
         return $this->belongsTo(Status::class);
     }
 }
