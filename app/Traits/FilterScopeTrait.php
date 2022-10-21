@@ -35,11 +35,13 @@ trait FilterScopeTrait
 
     /**
      * @param $query
+     * @param $field
+     * @param $value
      * @return void
      */
-    public function scopeWhereRelationEqual($query): void
+    public function scopeWhereRelationEqual($query, $field, $value): void
     {
-        $query->where('status_id', 2);
+        $query->where($field.'_id', $value);
     }
 
 }

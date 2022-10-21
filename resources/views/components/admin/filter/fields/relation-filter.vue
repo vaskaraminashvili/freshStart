@@ -2,20 +2,12 @@
   <div class="col-xl-3">
     <div class="mb-3">
       <label class="form-label" for="Search">{{ name.toUpperCase() }}</label>
-<!--      <input-->
-<!--        class="form-control"-->
-<!--        :id="name"-->
-<!--        type="search"-->
-<!--        :value="fieldValue(name)"-->
-<!--        :placeholder="name"-->
-<!--        @input="filter($event)"-->
-<!--      />-->
+      <select class="form-select" :id="name" @change="filter($event)">
+        <option selected value="">Open this select menu</option>
+        <option :value="option.id" :selected="selected === option.id" v-for="option in fieldOptions"
+                :key="option.id">{{ option.name.toUpperCase() }}
+        </option>
 
-      <select class="form-select" aria-label="Default select example">
-        <option selected="">Open this select menu</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
       </select>
     </div>
   </div>
@@ -25,32 +17,47 @@
 import _ from "lodash";
 import {useModuleStore} from "@/scripts/stores/ModuleStore.js";
 import {mapState, mapActions} from "pinia";
+import pluralize from 'pluralize'
+
 
 export default {
   props: {
-    params: Object,
     name: {
       type: String,
       default: 'Default'
     },
   },
+  data() {
+    return {
+      selected: "",
+    }
+  },
   computed: {
-    ...mapState(useModuleStore, ['filters'])
+    ...mapState(useModuleStore, ['relations', 'filters']),
+    fieldOptions() {
+      let current_field = pluralize(this.name, 0);
+      if (this.relations.hasOwnProperty(current_field)) {
+        return this.relations[current_field]
+      }
+    }
   },
   methods: {
     ...mapActions(useModuleStore, ['setSearchFilter']),
     filter: _.debounce(function (event) {
       this.setSearchFilter(event.target.id, event.target.value);
-    }, 500),
-    fieldValue(name) {
-      if (this.filters.search !== null && this.filters.search[name] !== undefined) {
-        return this.filters.search[name] !== undefined ? this.filters.search[name] : "";
-      } else {
-        return "";
-
-      }
-    },
+      this.selected = event.target.value
+    }, 200),
+    // fieldValue(name, value) {
+    //   if (this.filters.search !== null && this.filters.search[name] !== undefined) {
+    //
+    //     return this.filters.search[name] !== undefined && this.filters.search[name] === value ? true : false;
+    //   } else {
+    //     return "";
+    //
+    //   }
+    // },
   },
+
 }
 </script>
 

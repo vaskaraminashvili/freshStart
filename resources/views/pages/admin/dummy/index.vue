@@ -37,7 +37,7 @@ import Card from "../../../components/admin/card.vue";
 
 export default {
   beforeMount() {
-    this.setupModule(this.customizable, this.filters)
+    this.setupModule(this.customizable, this.filters, this.relations)
   },
   components: {
     Card,

@@ -18,27 +18,33 @@ trait SearchableTrait
     public function scopeCustomSearch($query): void
     {
         $request = request();
-        $customizable = collect(self::$customizable);
         if (request()->has('search')) {
             foreach ($request['search'] as $field => $value) {
-                $condition = $customizable->pluck('fields.' . $field . '.filterProps.condition')->first() ?? '';
-                $this->determineCondition($field, $condition, $value, $query);
+                $this->determineCondition($field, $value, $query);
             }
         }
     }
 
     /**
      * @param $field
-     * @param string $condition
      * @param $value
      * @param $query
      * @return void
      */
-    public function determineCondition($field, string $condition = 'contains', $value, $query): void
+    public function determineCondition($field, $value, $query): void
     {
+        $customizable = collect(self::$customizable);
+        $filterProps = $customizable->pluck('fields.' . $field . '.filterProps')->first() ?? '';
+        $condition = $customizable->pluck('fields.' . $field . '.filterProps.condition')->first() ?? '';
+
         if (!empty($condition)) {
             $scope = 'where' . Str::ucfirst($condition);
             $query->$scope($field, $value);
+        } elseif (!empty($filterProps) && array_key_exists('relation', $filterProps)) {
+            $condition = $filterProps['relation']['condition'];
+            $scope = 'whereRelation' . Str::ucfirst($condition);
+            $query->$scope($field, $value);
+
         } else {
             $query->where($field, 'LIKE', '%' . $value . '%');
 

@@ -8,7 +8,8 @@
         >
           {{ value ? "Active" : "Not Active" }}
           <span
-            class="ms-1 fas fa-check"
+            class="ms-1 fa-lg"
+            :class="icon"
             data-fa-transform="shrink-2"
           ></span>
         </span>
@@ -23,6 +24,17 @@ export default {
       type: Boolean,
       default : "NULL"
     },
+  },
+  computed: {
+    icon(){
+      let icon = 'fa-check';
+      if (this.value){
+        icon = 'fas fa-check'
+      }else{
+        icon = 'fas fa-times'
+      }
+      return icon;
+    }
   },
 }
 </script>

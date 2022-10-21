@@ -60,6 +60,7 @@ class Dummy extends Model
                         'relation' => [
                             'type' => 'belongsTo',
                             'name' => 'status',
+                            'condition' => 'equal'
                         ]
                     ]
                 ],

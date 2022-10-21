@@ -6,6 +6,7 @@
         "@inertiajs/progress": "^0.2.7",
         "lodash": "^4.17.21",
         "pinia": "^2.0.23",
+        "pluralize": "^8.0.0",
         "vue": "^3.2.36",
         "vue-loader": "^17.0.0",
         "vue-toastification": "^2.0.0-rc.5",

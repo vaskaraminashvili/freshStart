@@ -4,8 +4,9 @@ export const useModuleStore = defineStore('module', {
   state: () => ({
     count: 0,
     customizable: {},
+    relations: {},
     filters: {
-      search:{}
+      search: {}
     },
   }),
   getters: {
@@ -17,10 +18,11 @@ export const useModuleStore = defineStore('module', {
     increment() {
       this.count++
     },
-    setupModule(customizable, filters) {
+    setupModule(customizable, filters, relations) {
       this.customizable = customizable
       this.filters = filters
-      if (this.filters.search == null){
+      this.relations = relations
+      if (this.filters.search == null) {
         this.filters.search = {}
       }
     },
