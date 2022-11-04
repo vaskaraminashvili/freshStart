@@ -25,11 +25,11 @@ New-Alias -Name .. -Value Cd-Up -Force -Option AllScope
 
 function gs{git status}
 function ga{git add .}
-Function gcm([string]$arg1)
+function cmess([string]$arg1)
 {
     git commit -m "$arg1"
 }
-Function gpo([string]$arg1)
+function gpo([string]$arg1)
 {
     git push origin "$arg1"
 }
