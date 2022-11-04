@@ -34,6 +34,7 @@ class Dummy extends Model
 //                        'contains' => 'equal' // contains => LIKE '%EXAMPLE%' , equal => =
 //                    ]
                 ],
+                
                 'email' => [
                     'sortable' => true,
                 ],
