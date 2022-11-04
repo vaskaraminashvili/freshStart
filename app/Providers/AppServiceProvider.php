@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,7 +27,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
 //        Model::unguard();
-        Model::shouldBeStrict(! $this->app->isProduction());
+        Schema::defaultStringLength(191);
+        Model::shouldBeStrict(!$this->app->isProduction());
     }
 
 

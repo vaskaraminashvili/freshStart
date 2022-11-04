@@ -3,15 +3,15 @@
 
  Source Server         : wamp
  Source Server Type    : MySQL
- Source Server Version : 50736
+ Source Server Version : 50731
  Source Host           : localhost:3306
- Source Schema         : fresh_start
+ Source Schema         : falconcms
 
  Target Server Type    : MySQL
- Target Server Version : 50736
+ Target Server Version : 50731
  File Encoding         : 65001
 
- Date: 21/10/2022 09:55:47
+ Date: 04/11/2022 22:21:45
 */
 
 SET NAMES utf8mb4;
@@ -46,16 +46,15 @@ INSERT INTO `admin_pages` VALUES (3, 1, 'Edit', 'edit', '1', NULL, NULL);
 DROP TABLE IF EXISTS `articles`;
 CREATE TABLE `articles`  (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `dummy_id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
-  `publish` datetime(0) NULL DEFAULT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `body` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `active` tinyint(1) NOT NULL,
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
+  `deleted_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of articles
@@ -2230,7 +2229,7 @@ CREATE TABLE `migrations`  (
   `migration` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = MyISAM AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of migrations
@@ -2243,6 +2242,8 @@ INSERT INTO `migrations` VALUES (5, '2022_08_08_140712_create_articles_table', 1
 INSERT INTO `migrations` VALUES (6, '2022_08_23_171644_create_dummies_table', 2);
 INSERT INTO `migrations` VALUES (7, '2022_08_23_174438_create_countries_table', 3);
 INSERT INTO `migrations` VALUES (9, '2022_09_14_060730_add_deleted_at_to_dummies_table', 4);
+INSERT INTO `migrations` VALUES (10, '2022_10_21_165942_statuses', 5);
+INSERT INTO `migrations` VALUES (11, '2022_10_22_003854_create_articles_table', 6);
 
 -- ----------------------------
 -- Table structure for password_resets
@@ -2290,18 +2291,19 @@ CREATE TABLE `statuses`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `status` tinyint(255) NULL DEFAULT NULL,
+  `deleted_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = MyISAM AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of statuses
 -- ----------------------------
-INSERT INTO `statuses` VALUES (1, 'active', 1);
-INSERT INTO `statuses` VALUES (2, 'pending', 1);
-INSERT INTO `statuses` VALUES (3, 'completed', 1);
-INSERT INTO `statuses` VALUES (4, 'completed2', NULL);
-INSERT INTO `statuses` VALUES (5, 'completed4', NULL);
-INSERT INTO `statuses` VALUES (6, 'completed2as', 5);
+INSERT INTO `statuses` VALUES (1, 'active', 1, NULL);
+INSERT INTO `statuses` VALUES (2, 'pending', 1, NULL);
+INSERT INTO `statuses` VALUES (3, 'completed', 1, NULL);
+INSERT INTO `statuses` VALUES (4, 'completed2', NULL, NULL);
+INSERT INTO `statuses` VALUES (5, 'completed4', NULL, NULL);
+INSERT INTO `statuses` VALUES (6, 'completed2as', 5, NULL);
 
 -- ----------------------------
 -- Table structure for users
