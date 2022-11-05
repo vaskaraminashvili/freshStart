@@ -12,11 +12,19 @@ export const useModuleStore = defineStore('module', {
   getters: {
     doubleCount() {
       return 'test ' + this.count;
-    }
+    },
+
   },
   actions: {
     increment() {
       this.count++
+    },
+    fieldName(name) {
+      if (this.customizable.fields[name]?.filterProps) {
+        return this.customizable.fields[name]['filterProps']['relation']['name'];
+      } else {
+        return name;
+      }
     },
     setupModule(customizable, filters, relations) {
       this.customizable = customizable

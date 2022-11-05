@@ -28,12 +28,9 @@
 
 <script>
 // import {defineAsyncComponent} from "vue";
-import ActionsField from "@/views/components/admin/table/fields/actions-field.vue";
 
 export default {
-  components: {
-    ActionsField,
-  },
+
   props: {
     items: Object,
     customizable: {

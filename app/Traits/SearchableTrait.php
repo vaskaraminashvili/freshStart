@@ -41,11 +41,22 @@ trait SearchableTrait
             $scope = 'where' . Str::ucfirst($condition);
             $query->$scope($field, $value);
         } elseif (!empty($filterProps) && array_key_exists('relation', $filterProps)) {
-            $condition = $filterProps['relation']['condition'];
-            $scope = 'whereRelation' . Str::ucfirst($condition);
-            $query->$scope($field, $value);
+            $condition = $filterProps['relation']['condition'] ?? 'contains';
+            if (array_key_exists('type', $filterProps['relation'])){
+                $type = Str::camel($filterProps['relation']['type']);
+                $condition = Str::ucfirst($condition);
+                $scope = 'whereRelation' . $type . $condition;
+                $field = $filterProps['relation']['name']; // override field name, with the actial relation filterable field
+                $query->$scope($field, $value);
+            }else{
+                $condition = Str::ucfirst($condition);
+                $scope = 'whereRelation' . $condition;
+                $query->$scope($field, $value);
+
+            }
 
         } else {
+
             $query->where($field, 'LIKE', '%' . $value . '%');
 
         }

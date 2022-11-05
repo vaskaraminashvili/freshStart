@@ -7,6 +7,8 @@ use App\Traits\SearchableTrait;
 use App\Traits\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Dummy extends Model
@@ -14,7 +16,7 @@ class Dummy extends Model
     use SoftDeletes, SortableTrait, SearchableTrait, FilterScopeTrait;
 
 //    maybe find better way sometimes
-    public static $customizable = [
+    public static array $customizable = [
         // put everything acroding to methods
         'index' => [
 //            this is the model used , after this will be transformed to upper and plural
@@ -26,37 +28,48 @@ class Dummy extends Model
                     'filterable' => true,
 //                    'type' => 'text' , // text can be default!!  there could be several and after added new types || text , number , money , status, switch
                 ],
-                'address' => [
+                'article' => [
                     'sortable' => true,
-                    'filterable' => true,
-//                    'filtertype' => 'default',
-//                    'filterProps' => [
-//                        'contains' => 'equal' // contains => LIKE '%EXAMPLE%' , equal => =
-//                    ]
-                ],
-                
-                'email' => [
-                    'sortable' => true,
-                ],
-                'amount' => [
-                    'sortable' => true,
-                    'fieldType' => 'money', // type can be array and pass some things like PREFIX SUFFIX or other things  NEEDS TO BE CHECKED IF ARRAY
                     'filterable' => true,
                     'filterProps' => [
-                        'condition' => 'equal' // contains => LIKE '%EXAMPLE%' , equal => =
+                        'relation' => [
+                            'type' => 'hasMany',
+                            'name' => 'title',
+                        ]
                     ]
+//                    'type' => 'text' , // text can be default!!  there could be several and after added new types || text , number , money , status, switch
                 ],
-                'phone' => [
-                    'fieldType' => 'phone',
-                    'typeProps' => [
-                        'suffix' => '##',
-                        'prefix' => '##asd'
-                    ]
-                ],
+//                'address' => [
+//                    'sortable' => true,
+//                    'filterable' => true,
+////                    'filtertype' => 'default',
+////                    'filterProps' => [
+////                        'contains' => 'equal' // contains => LIKE '%EXAMPLE%' , equal => =
+////                    ]
+//                ],
+
+//                'email' => [
+//                    'sortable' => true,
+//                ],
+//                'amount' => [
+//                    'sortable' => true,
+//                    'fieldType' => 'money', // type can be array and pass some things like PREFIX SUFFIX or other things  NEEDS TO BE CHECKED IF ARRAY
+//                    'filterable' => true,
+//                    'filterProps' => [
+//                        'condition' => 'equal' // contains => LIKE '%EXAMPLE%' , equal => =
+//                    ]
+//                ],
+//                'phone' => [
+//                    'fieldType' => 'phone',
+//                    'typeProps' => [
+//                        'suffix' => '##',
+//                        'prefix' => '##asd'
+//                    ]
+//                ],
                 'status' => [
                     'fieldType' => 'status',
                     'filterable' => true,
-                    'filtertype' => 'relation',
+                    'filtertype' => 'select',
                     'filterProps' => [
                         'relation' => [
                             'type' => 'belongsTo',
@@ -94,5 +107,22 @@ class Dummy extends Model
     public function status(): BelongsTo
     {
         return $this->belongsTo(Status::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function articles(): HasMany
+    {
+        return $this->hasMany(Article::class);
+    }
+
+
+    /**
+     * @return HasOne
+     */
+    public function latestArticle(): HasOne
+    {
+        return $this->hasOne(Article::class)->latest();
     }
 }

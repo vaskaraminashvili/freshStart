@@ -12,16 +12,14 @@ import { toastOptions } from "./customOptions";
 import GlobalComponents from './globals'
 import { createPinia } from 'pinia'
 import "@/sass/app.scss";
-// createInertiaApp({
-//     resolve: (name) =>
-//         resolvePageComponent(name, import.meta.glob("../views/pages/**/*.vue")),
-//     setup({ el, app, props, plugin }) {
-//         const App = createApp({ render: () => h(app, props) })
-//             .use(plugin)
-//             .mixin({ methods: { route } });
-//         App.mount(el);
-//     },
-// });
+
+
+//
+//
+// //////////// maybe use separete main file for admin and web site make them separte. !!!!!!!!!!! leave comments every where for documentation in future
+//
+//
+
 
 createInertiaApp({
     resolve: async (name) => {
@@ -58,7 +56,7 @@ createInertiaApp({
             .component("Card", Card)
             .use(createPinia())
             .use(plugin)
-            .use(GlobalComponents)
+            .use(GlobalComponents) // load global components which are used for admin table and filter . this should not be loading for website in future
             .use(Toast, toastOptions)
             .mixin({ methods: { route } });
         // make toast available globaly (usage this.toast.success("I'm an info toast!");)

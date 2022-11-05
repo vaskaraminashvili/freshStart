@@ -3,6 +3,8 @@
 namespace App\Traits;
 
 
+use Illuminate\Contracts\Database\Eloquent\Builder;
+
 /**
  * FilterScopeTrait trait.
  */
@@ -42,6 +44,12 @@ trait FilterScopeTrait
     public function scopeWhereRelationEqual($query, $field, $value): void
     {
         $query->where($field.'_id', $value);
+    }
+
+    public function scopeWhereRelationHasManyContains($query, $field, $value){
+        $query->whereHas('articles', function (Builder $query) use($field,$value){
+            $query->where($field, 'like','%'.$value.'%');
+        });
     }
 
 }

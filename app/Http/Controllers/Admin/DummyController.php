@@ -38,23 +38,26 @@ class DummyController extends Controller
 
         foreach (Dummy::$customizable['index']['fields'] as $field) {
             if (isset($field['filterProps']['relation'])) {
-                $plural_field = Str::plural($field['filterProps']['relation']['name']);
-                $class = Str::plural($field['filterProps']['relation']['name'], 1);
-                $class = Str::ucfirst($class);
-                $class = 'App\Models\\' . $class;
-                $elements = $class::query()
-                    ->get()
-                    ->map(fn($item) => [
-                        'id' => $item->id,
-                        'name' => $item->name,
-                    ]);
+                if ($field['filterProps']['relation']['type'] == 'belongsTo'){
+                    $plural_field = Str::plural($field['filterProps']['relation']['name']);
+                    $class = Str::plural($field['filterProps']['relation']['name'], 1);
+                    $class = Str::ucfirst($class);
+                    $class = 'App\Models\\' . $class;
+                    $elements = $class::query()
+                        ->get()
+                        ->map(fn($item) => [
+                            'id' => $item->id,
+                            'name' => $item->name,
+                        ]);
 
-//                $this->data['relations'][$plural_field] =  GeneralResource::collection($elements);
-                $this->data['relations'][$plural_field] = $elements;
+    //                $this->data['relations'][$plural_field] =  GeneralResource::collection($elements);
+                    $this->data['relations'][$plural_field] = $elements;
+
+                }
             }
         }
         $dummies = Dummy::query()
-            ->with(['status'])
+            ->with(['status', 'latestArticle'])
             ->customSearch()
             ->customSort()
             ->withTrashed()

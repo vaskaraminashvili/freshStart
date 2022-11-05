@@ -23,15 +23,21 @@ New-Alias -Name r -Value Get-GitRemote -Force -Option AllScope
 function Cd-Up{ cd ../}
 New-Alias -Name .. -Value Cd-Up -Force -Option AllScope
 
+
 function gs{git status}
 function ga{git add .}
-function cmess([string]$arg1)
+Function gcm([string]$arg1)
 {
     git commit -m "$arg1"
 }
-function gpo([string]$arg1)
+Function gpo([string]$arg1)
 {
     git push origin "$arg1"
+}
+
+Function arts()
+{
+    php artisan serve
 }
 
 function ..{cd ../}
