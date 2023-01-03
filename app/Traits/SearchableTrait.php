@@ -25,6 +25,7 @@ trait SearchableTrait
         }
     }
 
+
     /**
      * @param $field
      * @param $value
