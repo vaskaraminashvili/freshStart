@@ -2,7 +2,7 @@ import {defineStore} from "pinia"
 
 export const useModuleStore = defineStore('module', {
   state: () => ({
-    count: 0,
+    count: 33,
     customizable: {},
     relations: {},
     filters: {
@@ -27,11 +27,18 @@ export const useModuleStore = defineStore('module', {
       }
     },
     setupModule(customizable, filters, relations) {
-      this.customizable = customizable
-      this.filters = filters
-      this.relations = relations
-      if (this.filters.search == null) {
-        this.filters.search = {}
+      console.log(customizable);
+      if (customizable !== undefined){
+        this.customizable = customizable
+      }
+      if (filters !== undefined){
+        this.filters = filters
+        if (this.filters.search == null) {
+          this.filters.search = {}
+        }
+      }
+      if (relations !== undefined){
+        this.relations = relations
       }
     },
     setSearchFilter(field, value) {

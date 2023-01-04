@@ -26,7 +26,6 @@ class Dummy extends Model
                 'name' => [
                     'sortable' => true,
                     'filterable' => true,
-//                    'type' => 'text' , // text can be default!!  there could be several and after added new types || text , number , money , status, switch
                 ],
                 'article' => [
                     'sortable' => true,
@@ -51,14 +50,14 @@ class Dummy extends Model
 //                'email' => [
 //                    'sortable' => true,
 //                ],
-//                'amount' => [
-//                    'sortable' => true,
-//                    'fieldType' => 'money', // type can be array and pass some things like PREFIX SUFFIX or other things  NEEDS TO BE CHECKED IF ARRAY
-//                    'filterable' => true,
-//                    'filterProps' => [
-//                        'condition' => 'equal' // contains => LIKE '%EXAMPLE%' , equal => =
-//                    ]
-//                ],
+                'amount' => [
+                    'sortable' => true,
+                    'fieldType' => 'money', // type can be array and pass some things like PREFIX SUFFIX or other things  NEEDS TO BE CHECKED IF ARRAY
+                    'filterable' => true,
+                    'filterProps' => [
+                        'condition' => 'equal' // contains => LIKE '%EXAMPLE%' , equal => =
+                    ]
+                ],
 //                'phone' => [
 //                    'fieldType' => 'phone',
 //                    'typeProps' => [
@@ -84,6 +83,19 @@ class Dummy extends Model
             ],
 
 
+        ],
+        'edit' => [
+            'model' => 'dummy',
+            'fields' => [
+                'name' => [
+                    'validation' => 'required|min:3',
+                ],
+                'email' => [
+                ],
+                'phone' => [
+                ],
+
+            ]
         ]
     ];
 //    $customizable this is the variable that customizes model differant actions for start we have index
@@ -97,7 +109,6 @@ class Dummy extends Model
 //    filterable|noncompulsory(default false) , if set to true new field will be shown above table
 //    filtertype|noncompulsory(have default value) describes how that field will look like there are pre built components for every field type and can be added new types and components
 //    filterProps|noncompulsory this will pass adition data for filtering example instead of default `LIKE` for filtering can be passed greater then and others
-
 
     protected $fillable = ['name', 'address', 'email', 'amount', 'phone', 'status'];
 

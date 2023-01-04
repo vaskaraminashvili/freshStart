@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\DummyResource;
-use App\Http\Resources\GeneralResource;
+use App\Http\Requests\Dummy\EditDummyRequest;
+use App\Http\Resources\Dummy\DummyEditResource;
+use App\Http\Resources\Dummy\DummyResource;
 use App\Models\Dummy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -105,23 +106,13 @@ class DummyController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function edit($id)
     {
         $dummy = Dummy::withTrashed()->findOrFail($id);
-        $dummy = [
-            'id' => $dummy->id,
-            'name' => $dummy->name,
-            'email' => $dummy->email,
-            'address' => $dummy->address,
-            'phone' => $dummy->phone,
-            'amount' => $dummy->amount,
-        ];
-
-        return Inertia::render('@.dummy.edit', [
-            'dummy' => $dummy,
-        ]);
+        $this->data['item'] = DummyEditResource::make($dummy);
+        return Inertia::render('@.dummy.edit', $this->data);
     }
 
     /**
@@ -131,7 +122,7 @@ class DummyController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Dummy $dummy, Request $request)
+    public function update($dummy, EditDummyRequest $request)
     {
 //        dd($request->all());
 //
@@ -143,8 +134,8 @@ class DummyController extends Controller
 //            'amount' => 40.0,
 //        ];
 
-//        $dummy->update($test);
-        $dummy->update($request->all());
+        $dummy = Dummy::withTrashed()->findOrFail($dummy);
+        $dummy->update($request->except('id'));
 
         return redirect()->back();
     }

@@ -31,5 +31,21 @@ export default {
                 `${componentName}`, m.default
             );
         })
+
+        componentFiles = import.meta.globEager(
+            '../views/components/admin/form/*.vue',
+        );
+
+        Object.entries(componentFiles).forEach(([path, m]) => {
+            // @ts-ignore
+            let componentName = _.upperFirst(
+                _.camelCase(path.split('/').pop().replace(/\.\w+$/, ''))
+            );
+
+            App.component(
+                `${componentName}`, m.default
+            );
+        })
+
     },
 };
