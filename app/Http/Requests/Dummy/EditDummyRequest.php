@@ -11,11 +11,13 @@ class EditDummyRequest extends FormRequest
     {
         $model_name = 'App\Models\\'. \Str::ucfirst(request()->get('model'));
         $customizable = $model_name::$customizable['edit'];
-        dd($customizable);
-        dd(request()->all());
-        return [
-            'name'=> 'required|min:3',
-        ];
+        $rules = [];
+        foreach ($customizable['fields'] as $key => $field){
+            if (array_key_exists('validation', $field)){
+                $rules[$key] = $field['validation'];
+            }
+        }
+        return $rules;
     }
 
     public function authorize(): bool

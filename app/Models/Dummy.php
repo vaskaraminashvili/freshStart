@@ -88,11 +88,13 @@ class Dummy extends Model
             'model' => 'dummy',
             'fields' => [
                 'name' => [
-                    'validation' => 'required|min:3',
+                    'validation' => 'required|min:15',
                 ],
                 'email' => [
+                    'validation' => 'required|email',
                 ],
                 'phone' => [
+                    'validation' => 'required',
                 ],
 
             ]

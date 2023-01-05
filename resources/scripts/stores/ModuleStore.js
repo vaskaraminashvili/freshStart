@@ -27,7 +27,6 @@ export const useModuleStore = defineStore('module', {
       }
     },
     setupModule(customizable, filters, relations) {
-      console.log(customizable);
       if (customizable !== undefined){
         this.customizable = customizable
       }

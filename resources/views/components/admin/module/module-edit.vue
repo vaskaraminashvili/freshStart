@@ -1,17 +1,20 @@
 <template>
 
-  <form @submit.prevent="submit">
+  <form @submit.prevent="submit" class="needs-validation">
     <input type="hidden" name="model" v-model="customizable.model">
     <div class="row">
       <template v-for="(field,name) in customizable.fields">
         <component v-if="field['fieldType'] !== undefined"
                    :is="determineType(field)"
                    v-model="form[name]"
+                   :error="form.errors[name]"
                    :label="capitalizeFirstLetter(name)"
         ></component>
         <component v-else
                    is="BaseInput"
                    v-model="form[name]"
+                   :error="form.errors[name]"
+                   :form="form"
                    :label="capitalizeFirstLetter(name)"
         ></component>
       </template>
@@ -120,6 +123,7 @@ export default {
       this.form.transform((data) => ({
         ...data,
         model: this.customizable.model,
+        wasSubmited: true,
       })).put(route("admin.dummies.update", this.form.id), {
         onSuccess: () => {
           this.toast.success("Dummy was updated");

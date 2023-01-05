@@ -135,7 +135,7 @@ class DummyController extends Controller
 //        ];
 
         $dummy = Dummy::withTrashed()->findOrFail($dummy);
-        $dummy->update($request->except('id'));
+        $dummy->update($request->validated());
 
         return redirect()->back();
     }
