@@ -8,6 +8,7 @@
                    :is="determineType(field)"
                    v-model="form[name]"
                    :error="form.errors[name]"
+                   :form="form"
                    :label="capitalizeFirstLetter(name)"
         ></component>
         <component v-else

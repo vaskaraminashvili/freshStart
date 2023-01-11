@@ -58,6 +58,7 @@
     <script src="{{ asset('https://polyfill.io/v3/polyfill.min.js?features=window.scroll') }}"></script>
     <script src="{{ asset('../myCms/vendors/list.js/list.min.js') }}"></script>
     <script src="{{ asset('../myCms/assets/js/theme.js') }}"></script>
+    <script src="{{ asset('../myCms/vendors/tinymce/tinymce.min.js') }}"></script>
 </body>
 
 </html>

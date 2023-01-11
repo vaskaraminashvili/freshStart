@@ -36,7 +36,6 @@ class DummyController extends Controller
      */
     public function index()
     {
-
         foreach (Dummy::$customizable['index']['fields'] as $field) {
             if (isset($field['filterProps']['relation'])) {
                 if ($field['filterProps']['relation']['type'] == 'belongsTo'){
@@ -108,9 +107,8 @@ class DummyController extends Controller
      * @param int $id
      * @return \Inertia\Response
      */
-    public function edit($id)
+    public function edit(Dummy $dummy)
     {
-        $dummy = Dummy::withTrashed()->findOrFail($id);
         $this->data['item'] = DummyEditResource::make($dummy);
         return Inertia::render('@.dummy.edit', $this->data);
     }
@@ -122,19 +120,9 @@ class DummyController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update($dummy, EditDummyRequest $request)
+    public function update(Dummy $dummy, EditDummyRequest $request)
     {
-//        dd($request->all());
-//
-//        $test = [
-//            'name' => "$request->name",
-//            'email' => 'admi@asdas.com',
-//            'address' => 'address',
-//            'phone' => 123123,
-//            'amount' => 40.0,
-//        ];
-
-        $dummy = Dummy::withTrashed()->findOrFail($dummy);
+//        dd($request->validated());
         $dummy->update($request->validated());
 
         return redirect()->back();

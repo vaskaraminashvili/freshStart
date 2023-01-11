@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\FilterScopeTrait;
+use App\Traits\ListRelationsTrait;
 use App\Traits\SearchableTrait;
 use App\Traits\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Dummy extends Model
 {
-    use SoftDeletes, SortableTrait, SearchableTrait, FilterScopeTrait;
+    use SoftDeletes, SortableTrait, SearchableTrait, FilterScopeTrait, ListRelationsTrait;
 
 //    maybe find better way sometimes
     public static array $customizable = [
@@ -90,11 +91,16 @@ class Dummy extends Model
                 'name' => [
                     'validation' => 'required|min:15',
                 ],
+
                 'email' => [
                     'validation' => 'required|email',
                 ],
                 'phone' => [
                     'validation' => 'required',
+                ],
+                'address' => [
+                    'fieldType' => 'editor',
+                    'validation' => 'required|min:15',
                 ],
 
             ]

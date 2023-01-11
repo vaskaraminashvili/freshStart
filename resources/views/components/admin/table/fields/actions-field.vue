@@ -1,16 +1,16 @@
 <template>
-      <td class="text-end">
-        <div class="d-flex">
-          <div>
-            <Link
+  <td class="text-center">
+    <div class="d-flex justify-content-end">
+      <div>
+        <Link v-if="item.active"
               :href="route('admin.'+customizable.currentModel.plural+'.edit', item.id)"
               class="btn p-0"
-            >
-              <span class="text-500 fas fa-edit"></span>
-            </Link>
-          </div>
-          <div class="dropdown font-sans-serif position-static">
-            <button
+        >
+          <span class="text-500 fas fa-edit"></span>
+        </Link>
+      </div>
+      <div class="dropdown font-sans-serif position-static">
+        <button
               class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal"
               type="button"
               data-bs-toggle="dropdown"
@@ -22,10 +22,8 @@
             </button>
             <div class="dropdown-menu dropdown-menu-end border py-0">
               <div class="bg-white py-2">
-                <a class="dropdown-item" href="#!">Edit</a
-                ><a class="dropdown-item text-danger" href="#!"
-              >Delete</a
-              >
+                <a class="dropdown-item" href="#!" v-if="item.active">Edit</a>
+                <a class="dropdown-item text-danger" href="#!" v-if="item.active">Delete</a>
               </div>
             </div>
           </div>

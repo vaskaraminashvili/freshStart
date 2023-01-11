@@ -16,18 +16,11 @@
 </template>
 
 <script>
+import fromFieldHelpers from "@/scripts/mixins/formFieldHelper.js";
+
 export default {
-  props: {
-    label: {
-      type: String,
-      default: "",
-    },
-    modelValue: {
-      type: [String, Number],
-      default: "",
-    },
-    error : String,
-  },
+
+  mixins: [fromFieldHelpers],
 };
 </script>
 

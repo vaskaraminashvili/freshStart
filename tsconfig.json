@@ -19,6 +19,9 @@
         "paths": {
             "@/*": [
                 "resources/*"
+            ],
+            "CMS/*": [
+                "public/myCms/*"
             ]
         }
     },
