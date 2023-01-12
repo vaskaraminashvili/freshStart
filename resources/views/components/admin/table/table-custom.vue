@@ -35,9 +35,9 @@ export default {
   },
   computed: {
     ...mapState(useModuleStore, {
-      fields : "customizable",
-      filt : "filters",
-}),
+      fields: "customizable",
+      filt: "filters",
+    }),
     dataList() {
       let listItem = {'valueNames': Object.keys(this.customizable.fields)};
       return JSON.stringify(listItem);

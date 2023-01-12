@@ -20,6 +20,7 @@ class DummyEditResource extends JsonResource
             'email' => $this->email,
             'address' => $this->address,
             'phone' => $this->phone,
+            'active' => $this->active,
         ];
     }
 }

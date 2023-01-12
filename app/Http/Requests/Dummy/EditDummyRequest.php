@@ -15,6 +15,9 @@ class EditDummyRequest extends FormRequest
         foreach ($customizable['fields'] as $key => $field){
             if (array_key_exists('validation', $field)){
                 $rules[$key] = $field['validation'];
+            }else{
+                $rules[$key] = 'nullable';
+
             }
         }
         return $rules;

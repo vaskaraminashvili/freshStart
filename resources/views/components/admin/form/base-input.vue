@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-3 col-xl-4">
+  <div class="mb-3" :class="`col-xl-${col}`">
     <label class="form-label" :for="label">{{ label }}</label>
     <input
       class="form-control"

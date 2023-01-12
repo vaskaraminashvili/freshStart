@@ -122,7 +122,6 @@ class DummyController extends Controller
      */
     public function update(Dummy $dummy, EditDummyRequest $request)
     {
-//        dd($request->validated());
         $dummy->update($request->validated());
 
         return redirect()->back();

@@ -102,6 +102,9 @@ class Dummy extends Model
                     'fieldType' => 'editor',
                     'validation' => 'required|min:15',
                 ],
+                'active' => [
+                    'fieldType' => 'check',
+                ],
 
             ]
         ]
@@ -118,8 +121,9 @@ class Dummy extends Model
 //    filtertype|noncompulsory(have default value) describes how that field will look like there are pre built components for every field type and can be added new types and components
 //    filterProps|noncompulsory this will pass adition data for filtering example instead of default `LIKE` for filtering can be passed greater then and others
 
-    protected $fillable = ['name', 'address', 'email', 'amount', 'phone', 'status'];
+//    protected $fillable = ['name', 'address', 'email', 'amount', 'phone', 'status'];
 
+    protected $guarded = [];
     /**
      * @return BelongsTo
      */
