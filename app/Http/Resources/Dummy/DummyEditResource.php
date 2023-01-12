@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Dummy;
 
+use App\Models\Status;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -20,7 +21,7 @@ class DummyEditResource extends JsonResource
             'email' => $this->email,
             'address' => $this->address,
             'phone' => $this->phone,
-            'active' => $this->active,
+            'test_check' => $this->test_check,
         ];
     }
 }

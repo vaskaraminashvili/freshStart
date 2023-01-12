@@ -24,6 +24,11 @@ export default {
         return this.fields.fields[field]['col']
       }
       return 4;
+    },
+    currentField(){
+      const field = this.label.toLowerCase();
+      return this.fields.fields[field]
     }
   },
+
 }

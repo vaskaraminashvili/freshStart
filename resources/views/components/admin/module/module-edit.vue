@@ -11,6 +11,7 @@
                    :form="form"
                    :label="capitalizeFirstLetter(name)"
         ></component>
+
         <component v-else
                    is="BaseInput"
                    v-model="form[name]"
