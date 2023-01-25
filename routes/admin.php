@@ -45,7 +45,7 @@ Route::post('/get-data-fromModel', function (Request $request) {
     $model_name = 'App\Models\\' . \Str::ucfirst($validated['model']);
     $data = $model_name::when($validated['where'], function ($query) use ($validated) {
         return $query->where($validated['where']['column'], $validated['where']['operator'], $validated['where']['value']);
-    })->orderBy('id')->get()->pluck('name', $validated['field']);
+    })->orderBy('id')->get()->pluck($validated['field'], 'id');
 
     return $data;
 });
