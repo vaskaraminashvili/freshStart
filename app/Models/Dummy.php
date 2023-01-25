@@ -104,14 +104,23 @@ class Dummy extends Model
                 ],
                 'test_check' => [
                     'fieldType' => 'check',
-                    'options' => [
-                        0 => 'it is not active',
-                        1 => 'yes yes it is active',
-                        2 => 'Et eos quia quia.',
-                        3 => 'Distinctio autem eum quisquam praesentium.',
-                        4 => 'Quaerat sed consequuntur optio sed.',
-                        5 => 'Odit voluptatum molestias eveniet et odio.',
-                    ]
+    //                    'options' => [ // this is one way of passing data
+    //                        0 => 'it is not active',
+    //                        1 => 'yes yes it is active',
+    //                        2 => 'Et eos quia quia.',
+    //                        3 => 'Distinctio autem eum quisquam praesentium.',
+    //                        4 => 'Quaerat sed consequuntur optio sed.',
+    //                        5 => 'Odit voluptatum molestias eveniet et odio.',
+    //                    ],
+                    'fromModel' => [
+                        'model' => 'Status',
+                        'field' => 'name',
+                        'where' => [
+                            'column' => 'status',
+                            'operator' => '=',
+                            'value' => '1',
+                        ]
+                    ],
                 ],
 
             ]

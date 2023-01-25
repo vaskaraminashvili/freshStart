@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\DummyController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\Admin\DummyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,8 +33,22 @@ Route::get('/about', function () {
 })->name('about');
 
 
-
 Route::resource('dummies', DummyController::class);
+
+Route::post('/get-data-fromModel', function (Request $request) {
+    $validated = $request->validate([
+        'model' => 'required',
+        'field' => 'required',
+        'where' => 'sometimes|array:column,operator,value',
+    ]);
+//    $column, $operator = null, $value = null,
+    $model_name = 'App\Models\\' . \Str::ucfirst($validated['model']);
+    $data = $model_name::when($validated['where'], function ($query) use ($validated) {
+        return $query->where($validated['where']['column'], $validated['where']['operator'], $validated['where']['value']);
+    })->orderBy('id')->get()->pluck('name', $validated['field']);
+
+    return $data;
+});
 
 
 // Route::prefix('dummies')->name('dummies.')->group(function () {

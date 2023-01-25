@@ -12,7 +12,10 @@ import { toastOptions } from "./customOptions";
 import GlobalComponents from './globals'
 import { createPinia } from 'pinia'
 import "@/sass/app.scss";
+import axios from "axios";
 
+
+axios.defaults.baseURL = 'http://localhost:8000/'; // in future take this from env
 
 //
 //
