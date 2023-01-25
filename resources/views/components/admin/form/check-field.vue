@@ -7,9 +7,8 @@
                  :class="{'is-invalid' : error}"
                  :id="index"
                  @change="onChange"
-                 :checked="modelValue === option"
-                 :value="option"
-                 :name="label.toLocaleLowerCase()"/>
+                 :value="index"
+                 v-model="checkedItems"/>
           <label class="form-check-label" :for="index">{{ option }}</label>
           <div v-if="error" class="invalid-feedback">{{ error }}</div>
         </div>
@@ -37,11 +36,16 @@ import fromFieldHelpers from "@/scripts/mixins/formFieldHelper.js";
 export default {
 
   mixins: [fromFieldHelpers],
+  data() {
+    return {
+      checkedItems: this.modelValue !== null && typeof Array.isArray(this.modelValue)? this.modelValue : [],
+    }
+  },
   methods: {
-      onChange(event ,emit) {
-        console.log(event.target.value)
-        this.$emit('update:modelValue', event.target.value)
-      }
+    onChange(event, emit) {
+      console.log(event.target.value)
+      this.$emit('update:modelValue', this.checkedItems)
+    }
   },
 };
 </script>
