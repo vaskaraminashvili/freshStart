@@ -102,16 +102,36 @@ class Dummy extends Model
                     'fieldType' => 'editor',
                     'validation' => 'required|min:15',
                 ],
-                'test_check' => [
-                    'fieldType' => 'check',
-    //                    'options' => [ // this is one way of passing data
-    //                        0 => 'it is not active',
-    //                        1 => 'yes yes it is active',
-    //                        2 => 'Et eos quia quia.',
-    //                        3 => 'Distinctio autem eum quisquam praesentium.',
-    //                        4 => 'Quaerat sed consequuntur optio sed.',
-    //                        5 => 'Odit voluptatum molestias eveniet et odio.',
-    //                    ],
+//                'test_check' => [
+//                    'fieldType' => 'check',
+//    //                    'options' => [ // this is one way of passing data
+//    //                        0 => 'it is not active',
+//    //                        1 => 'yes yes it is active',
+//    //                        2 => 'Et eos quia quia.',
+//    //                        3 => 'Distinctio autem eum quisquam praesentium.',
+//    //                        4 => 'Quaerat sed consequuntur optio sed.',
+//    //                        5 => 'Odit voluptatum molestias eveniet et odio.',
+//    //                    ],
+//                    'fromModel' => [
+//                        'model' => 'Status',
+//                        'field' => 'name',
+//                        'where' => [
+//                            'column' => 'status',
+//                            'operator' => '=',
+//                            'value' => '1',
+//                        ]
+//                    ],
+//                ],
+                'test_radio' => [
+                    'fieldType' => 'radio',
+                    //                    'options' => [ // this is one way of passing data
+                    //                        0 => 'it is not active',
+                    //                        1 => 'yes yes it is active',
+                    //                        2 => 'Et eos quia quia.',
+                    //                        3 => 'Distinctio autem eum quisquam praesentium.',
+                    //                        4 => 'Quaerat sed consequuntur optio sed.',
+                    //                        5 => 'Odit voluptatum molestias eveniet et odio.',
+                    //                    ],
                     'fromModel' => [
                         'model' => 'Status',
                         'field' => 'name',

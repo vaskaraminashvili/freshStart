@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Dummy;
 
-use App\Models\Dummy;
 use Illuminate\Foundation\Http\FormRequest;
 
 class EditDummyRequest extends FormRequest
@@ -12,6 +11,7 @@ class EditDummyRequest extends FormRequest
         $model_name = 'App\Models\\'. \Str::ucfirst(request()->get('model'));
         $customizable = $model_name::$customizable['edit'];
         $rules = [];
+        dd(request()->all());
         foreach ($customizable['fields'] as $key => $field){
             if (array_key_exists('validation', $field)){
                 $rules[$key] = $field['validation'];
