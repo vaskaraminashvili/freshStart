@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\ComponentDataController;
 use App\Http\Controllers\Admin\DummyController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Admin\ModulesController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -35,20 +36,14 @@ Route::get('/about', function () {
 
 Route::resource('dummies', DummyController::class);
 
-Route::post('/get-data-fromModel', function (Request $request) {
-    $validated = $request->validate([
-        'model' => 'required',
-        'field' => 'required',
-        'where' => 'sometimes|array:column,operator,value',
-    ]);
-//    $column, $operator = null, $value = null,
-    $model_name = 'App\Models\\' . \Str::ucfirst($validated['model']);
-    $data = $model_name::when($validated['where'], function ($query) use ($validated) {
-        return $query->where($validated['where']['column'], $validated['where']['operator'], $validated['where']['value']);
-    })->orderBy('id')->get()->pluck($validated['field'], 'id');
+Route::post('/componentData', ComponentDataController::class);
 
-    return $data;
+Route::group(['prefix'=>'modules','as'=>'module.'], function(){
+    Route::resource('/', ModulesController::class);
 });
+
+
+
 
 
 // Route::prefix('dummies')->name('dummies.')->group(function () {

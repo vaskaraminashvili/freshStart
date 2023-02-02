@@ -20,7 +20,7 @@ export default {
       if (this.currentField['options']) {
         this.options = this.currentField.options;
       } else if (this.currentField['fromModel']) {
-        this.options = await axios.post('admin/get-data-fromModel', this.currentField['fromModel'])
+        this.options = await axios.post('admin/componentData', this.currentField['fromModel'])
           .then(response => response.data)
           .catch(function (error) {
             console.log(error);

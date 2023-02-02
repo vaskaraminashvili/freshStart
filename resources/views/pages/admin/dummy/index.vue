@@ -32,15 +32,13 @@ import Filter from "@/views/components/admin/filter/filter.vue"
 
 import TableCustom from "@/views/components/admin/table/table-custom.vue";
 import {useModuleStore} from "@/scripts/stores/ModuleStore.js";
-import {mapState, mapActions} from 'pinia'
-import Card from "../../../components/admin/card.vue";
+import {mapActions, mapState} from 'pinia'
 
 export default {
   beforeMount() {
     this.setupModule(this.customizable, this.filters, this.relations)
   },
   components: {
-    Card,
     TableCustom,
     Filter
   },
