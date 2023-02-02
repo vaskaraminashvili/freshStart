@@ -51,7 +51,7 @@
                   <span class="fas fa-ellipsis-h fs--1"></span></button>
                 <div class="dropdown-menu dropdown-menu-end border py-0">
                   <div class="py-2">
-                    <a class="dropdown-item" href="#!">Edit</a>
+                    <a class="dropdown-item" :href="route('admin.modules-manager.edit', module.id)">Edit</a>
                     <a class="dropdown-item text-danger" href="#!">Delete</a>
                   </div>
                 </div>

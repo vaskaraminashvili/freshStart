@@ -2,7 +2,8 @@ import {defineStore} from "pinia"
 
 export const useModuleManagerStore = defineStore('module', {
   state: () => ({
-    count: 33,
+    item : {}
+
 
   }),
   getters: {
@@ -12,6 +13,9 @@ export const useModuleManagerStore = defineStore('module', {
 
   },
   actions: {
+    assignItem(item){
+      return this.item = item
+    },
     managedText(item){
       return item.managed === 0 ? 'Not Managed' : 'Managed';
     },

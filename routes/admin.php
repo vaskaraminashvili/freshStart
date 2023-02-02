@@ -38,9 +38,7 @@ Route::resource('dummies', DummyController::class);
 
 Route::post('/componentData', ComponentDataController::class);
 
-Route::group(['prefix'=>'modules','as'=>'module.'], function(){
-    Route::resource('/', ModulesController::class);
-});
+Route::resource('/modules-manager', ModulesController::class);
 
 
 

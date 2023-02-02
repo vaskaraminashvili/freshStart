@@ -6,9 +6,8 @@
         <h5>Card Header</h5>
       </slot>
     </div>
-    <div class="card-body bg-light">
+    <div class="card-body" :class="bodyClass" v-if="hasBodySlot">
       <slot></slot>
-
     </div>
   </div>
 
@@ -16,12 +15,18 @@
 
 <script>
 export default {
-  data() {
-    return {}
+  props: {
+    bodyClass: {
+      type: String,
+      default: 'bg-light'
+    },
   },
   computed: {
     hasHeaderSlot() {
       return !!this.$slots.header;
+    },
+    hasBodySlot() {
+      return !!this.$slots.default;
     }
   },
 }

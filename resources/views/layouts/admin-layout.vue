@@ -224,7 +224,7 @@ const props = defineProps({
                 <ul class="nav collapse false" id="moduleManager">
                   <li class="nav-item">
                     <Link
-                      :href="route('admin.module.index')"
+                      :href="route('admin.modules-manager.index')"
                       class="nav-link"
                       aria-expanded="false"
                     >

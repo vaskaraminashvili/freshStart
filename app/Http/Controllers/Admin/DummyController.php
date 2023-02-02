@@ -18,7 +18,7 @@ class DummyController extends Controller
     public function __construct()
     {
 
-        $method_name = request()->route()->getActionMethod();
+        $method_name = '';
         $customizable = array_key_exists($method_name, Dummy::$customizable) ? Dummy::$customizable[$method_name] : [];
         $customizable['currentModel'] = [
             'singular' => Dummy::$customizable['index']['model'],

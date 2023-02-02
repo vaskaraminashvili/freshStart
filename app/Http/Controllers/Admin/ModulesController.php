@@ -30,6 +30,8 @@ class ModulesController extends Controller
 
     public function edit(Module $module)
     {
+        $data['item'] = $module;
+        return Inertia::render('@.moduleManager.edit', $data);
     }
 
     public function update(Request $request, Module $module)
