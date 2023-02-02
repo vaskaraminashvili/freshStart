@@ -20,7 +20,7 @@
           </thead>
           <tbody>
 
-          <tr class="align-middle" v-for="module in items" :key="module.id">
+          <tr class="align-middle" v-for="module in managerStore.items" :key="module.id">
             <td class="text-nowrap">
               <div class="d-flex align-items-center">
                 <div class="avatar avatar-xl">
@@ -51,8 +51,13 @@
                   <span class="fas fa-ellipsis-h fs--1"></span></button>
                 <div class="dropdown-menu dropdown-menu-end border py-0">
                   <div class="py-2">
-                    <a class="dropdown-item" :href="route('admin.modules-manager.edit', module.id)">Edit</a>
-                    <a class="dropdown-item text-danger" href="#!">Delete</a>
+                    <Link
+                      class="dropdown-item" @click="managerStore.assignItem(module)"
+                      :href="route('admin.modules-manager.edit', module.id)"
+                    >
+                      Edit
+                    </Link>
+                    <a class="dropdown-item text-danger" @click="managerStore.assignItem(module)">Delete</a>
                   </div>
                 </div>
               </div>
@@ -69,19 +74,14 @@
 import {useModuleManagerStore} from "@/scripts/stores/ModuleManagerStore.js";
 
 export default {
-  setup() {
+  setup(props) {
     const managerStore = useModuleManagerStore()
+    managerStore.assignItems(props.items)
     return {managerStore};
   },
   props: {
     items: Object,
   },
-  // computed: {
-  //   ...mapState(useModuleManagerStore, ['count']),
-  // },
-  // methods: {
-  //   ...mapActions(useModuleManagerStore, ['testAction'])
-  // },
 }
 </script>
 

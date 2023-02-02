@@ -1,8 +1,10 @@
 import {defineStore} from "pinia"
 
-export const useModuleManagerStore = defineStore('module', {
+export const useModuleManagerStore = defineStore('ModuleManagerStore', {
   state: () => ({
-    item : {}
+    items : {},
+    item : {},
+    test : 'tee'
 
 
   }),
@@ -13,6 +15,9 @@ export const useModuleManagerStore = defineStore('module', {
 
   },
   actions: {
+    assignItems(items){
+      return this.items = items
+    },
     assignItem(item){
       return this.item = item
     },

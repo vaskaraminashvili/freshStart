@@ -35,8 +35,10 @@ import {useModuleStore} from "@/scripts/stores/ModuleStore.js";
 import {mapActions, mapState} from 'pinia'
 
 export default {
-  beforeMount() {
-    this.setupModule(this.customizable, this.filters, this.relations)
+  setup(props) {
+    const moduleStore = useModuleStore()
+    moduleStore.setupModule(props.customizable, props.filters, props.relations)
+    return {moduleStore};
   },
   components: {
     TableCustom,
@@ -51,12 +53,7 @@ export default {
       default: null
     },
   },
-  computed: {
-    ...mapState(useModuleStore, ['count'])
-  },
-  methods: {
-    ...mapActions(useModuleStore, ['setupModule'])
-  },
+
 
 };
 </script>

@@ -5,10 +5,10 @@
     </template>
     <template v-slot:default>
       <div class="row">
-        <div class="col-xl-6">
+        <div class="col-xl-3">
           <Card class="" body-class="">
             <template v-slot:header>
-              <h5>test</h5>
+              <h5>{{ managerStore.item.name }}</h5>
             </template>
           </Card>
         </div>
@@ -19,16 +19,11 @@
 
 <script>
 import {useModuleManagerStore} from "@/scripts/stores/ModuleManagerStore.js";
-import Card from "@/views/components/admin/card.vue";
 
 export default {
-  components: {Card},
-  props: {
-    item: Object
-  },
-  mounted() {
+
+  setup() {
     const managerStore = useModuleManagerStore();
-    managerStore.assignItem(this.item)
     return {managerStore}
   }
 }

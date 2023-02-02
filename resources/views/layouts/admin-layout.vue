@@ -8,6 +8,7 @@ const props = defineProps({
   <!-- ===============================================-->
   <!--    Main Content-->
   <!-- ===============================================-->
+
   <main class="main" id="top">
     <div class="container-fluid" data-layout="container">
       <nav
@@ -794,6 +795,7 @@ const props = defineProps({
             </li>
           </ul>
         </nav>
+        <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/150838650&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/1cyhitheprynce" title="CyHi The Prynce" target="_blank" style="color: #cccccc; text-decoration: none;">CyHi The Prynce</a> · <a href="https://soundcloud.com/1cyhitheprynce/barry-white" title="Barry White" target="_blank" style="color: #cccccc; text-decoration: none;">Barry White</a></div>
         <slot></slot>
         <footer class="footer">
           <div class="row g-0 justify-content-between fs--1 mt-4 mb-3">
