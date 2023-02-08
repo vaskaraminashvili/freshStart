@@ -3,7 +3,7 @@ import {defineStore} from "pinia"
 export const useModuleManagerStore = defineStore('ModuleManagerStore', {
   state: () => ({
     items : {},
-    item : {},
+    item : null,
     test : 'tee'
 
 
@@ -12,6 +12,12 @@ export const useModuleManagerStore = defineStore('ModuleManagerStore', {
     doubleCount() {
       return 'test ' + this.count;
     },
+    itemStructure() {
+      return this.item !== null ? JSON.parse(this.item.structure) : null;
+    },
+    moduleMethods(){
+       return this.itemStructure !== null ? Object.keys(this.itemStructure) : {};
+    }
 
   },
   actions: {
