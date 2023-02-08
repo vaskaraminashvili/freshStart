@@ -30,8 +30,9 @@ class ModulesController extends Controller
 
     public function edit($module)
     {
-        $data['item'] = Module::find($module);
-        return Inertia::render('@.moduleManager.edit', $data);
+//        $data['item'] = Module::find($module);
+//        return Inertia::render('@.moduleManager.edit', $data);
+        return Inertia::render('@.moduleManager.edit2');
     }
 
     public function update(Request $request, Module $module)
