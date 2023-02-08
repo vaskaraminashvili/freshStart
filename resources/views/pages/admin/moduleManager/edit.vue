@@ -71,7 +71,37 @@
                  :id="`#${tab}`"
                  role="tabpanel"
                  :key="index">
-              {{ tab }}
+              {{managerStore.itemStructure[tab]}}
+              <div class="table-responsive scrollbar">
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Sortable</th>
+                    <th scope="col">Filterable</th>
+                    <th scope="col">Filtertype</th>
+                    <th scope="col">FilterProps</th>
+                    <th scope="col">FieldType</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr v-for="(field,index) in managerStore.itemStructure[tab]['fields']" :key="index">
+                    <td>{{ index }}</td>
+                    <td>
+                      {{ field }}
+                      <div class="form-check form-switch">
+                        <input class="form-check-input" id="flexSwitchCheckDefault" type="checkbox" />
+                        <label class="form-check-label" for="flexSwitchCheckDefault">{{ field }}</label>
+                      </div>
+                    </td>
+                    <td class="text-end">
+                      <div><button class="btn btn-link p-0" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><span class="text-500 fas fa-edit"></span></button><button class="btn btn-link p-0 ms-2" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"><span class="text-500 fas fa-trash-alt"></span></button></div>
+                    </td>
+                  </tr>
+
+                  </tbody>
+                </table>
+              </div>
             </div>
 
           </div>
